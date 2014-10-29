@@ -28,11 +28,11 @@ each proposal; it would (hopefully) leave nice thought stack.*
 
 **Proposal:** Where possible, use list literals (ArrayLists are the fastest non-array linear data structure). ~F
 
-**Proposal:** Represent evaluations as double and probability as integer (attribute of value x would mean probability of x/1000)
+**Proposal:** Represent evaluations as double and probability as integer (attribute of value x would mean probability of x/1000) ~F
  
 **Note:** Components using Evolution Context (see dictionary for all capitalized terms) are not forced to work together 
     by any type-safety techniques. You can create ContextManager that will not provide informations needed by your 
-    implementation of CP, and that is your fault. The contract makes keeping it consistent your duty.  
+    implementation of CP, and that is your fault. The contract makes keeping it consistent your duty. ~F  
 
 Dictionary
 ----------
