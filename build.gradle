@@ -8,7 +8,7 @@ targetCompatibility = 1.7
 group = 'com.github.whatever'
 version = '0.1-SNAPSHOT'
 
-//mainClassName = "pl.webscrapers.grequests.examples.RunAllExamples"
+mainClassName = "com.github.whatever.softcomputing.Example1"
 
 repositories {
     mavenCentral()

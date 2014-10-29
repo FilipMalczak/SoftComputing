@@ -18,6 +18,7 @@ Autorzy
 * Jacek Miszczak (179158)
 * Filip Malczak (179326)
 
+> Following text should not be graded or taken under any consideration while grading. These are only developer notes.
 
 Dev Notes
 ---------
