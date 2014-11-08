@@ -17,7 +17,7 @@ class Pair implements Specimen{
     double x,y
 
     @Override
-    double evaluate() {
+    double evaluate(Map ctx) {
         (x+y)*3 - (x-y)*(x-y)*x
     }
 
@@ -38,10 +38,10 @@ def ga = new GeneticAlgorithm<Pair>(
     { List<Pair> population, int generation, Map context ->
         generation>200
     } as StopCondition<Pair>,
-    { Pair p1, Pair p2 ->
+    { Pair p1, Pair p2, Map ctx ->
         [ new Pair(p1.x, p2.y), new Pair(p2.x, p1.y) ]
     } as CrossoverOperator<Pair>,
-    { Pair p ->
+    { Pair p, Map ctx ->
         [ 2*p.x*(Math.random()-0.5), 2*p.y*(Math.random()-0.5) ]
     } as MutationOperator<Pair>,
     { int populationSize, List<Pair> population, int generation, Map context ->

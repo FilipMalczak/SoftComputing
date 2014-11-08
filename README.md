@@ -39,7 +39,7 @@ Dictionary
 
 * Specimen - object in searched space (function tree i some form, in case of our problem)
 * Population - list of _Specimen_ s
-* Evaluation - function fromsearched space to real numbers (represented as double), which should be minimalised (minimised? linguistic help, pleas)
+* Evaluation - function from searched space to real numbers (represented as double), which should be minimalised (minimised? linguistic help, please)
 * Generation - number of processed population; number of genetic algorithms iteration
 * CP - crossover probability; may change with each generation
 * MP - mutation probability; may change with each generation
