@@ -10,7 +10,7 @@ class Var {
         this.name = name
     }
 
-    static Var call(String name){
+    static Var forName(String name){
         if (!vars.containsKey(name))
             vars[name] = new Var(name)
         vars[name]

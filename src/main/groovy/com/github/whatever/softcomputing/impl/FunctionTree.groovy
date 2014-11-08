@@ -6,7 +6,7 @@ import groovy.transform.Canonical
 
 import static java.lang.Math.pow
 
-@Canonical
+@Canonical(includes = ["c", "root"])
 class FunctionTree implements Specimen{
     double c
     Node root
@@ -31,6 +31,28 @@ class FunctionTree implements Specimen{
 
     @Override
     Specimen copy() {
-        return null
+        new FunctionTree(
+            c,
+            root.copy()
+        )
     }
+
+    /**
+     * Vector is gathered by searching tree depth-first.
+     */
+    List<Double> getConstantsVector(){
+        [c] + root.constantsVector
+    }
+
+    void setConstantsVector(List<Double> vector){
+        c = vector.head()
+        def tail = vector.tail()
+        root.constantsVector = tail
+        assert "Provided vector had too many elements!" && tail.empty
+    }
+
+    int getDepth(){
+        1 + root.depth
+    }
+
 }
