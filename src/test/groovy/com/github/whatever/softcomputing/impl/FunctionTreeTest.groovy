@@ -6,6 +6,7 @@ import org.junit.Test
 
 class FunctionTreeTest extends GroovyTestCase {
     FunctionTree tree
+    FunctionTree modified
 
     @Before
     void setUp(){
@@ -27,6 +28,25 @@ class FunctionTreeTest extends GroovyTestCase {
                 ]
             )
         )
+        // 2  * (3 + x + 4y)
+        modified = new FunctionTree(
+            2.0,
+            new Node(
+                Function.SUM,
+                [
+                    3.0,
+                    Var.forName("x"),
+                    new Node(
+                        Function.PRODUCT,
+                        [
+                            4.0,
+                            Var.forName("y")
+                        ]
+                    )
+                ]
+            )
+        )
+
     }
 
     @Test
@@ -42,6 +62,8 @@ class FunctionTreeTest extends GroovyTestCase {
                      [ x: 1, y:-1, z: 0 ]
                  ]
             ]) == 0
-
+        assert tree.constantsVector == [1.0, 1.0, 2.0]
+        tree.constantsVector = [2.0, 3.0, 4.0]
+        assert tree == modified
     }
 }

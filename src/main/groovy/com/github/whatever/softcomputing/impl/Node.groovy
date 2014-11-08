@@ -58,6 +58,7 @@ class Node {
             else if (it instanceof Node)
                 out += it.constantsVector
         }
+        return out
     }
 
     /**
@@ -66,11 +67,11 @@ class Node {
      */
     void setConstantsVector(List<Double> vector){
         args.size().times { int idx ->
-            if (args[i] instanceof Number) {
-                args[i] = vector.head()
+            if (args[idx] instanceof Number) {
+                args[idx] = vector.head()
                 vector.remove(0)
-            } else if (args[i] instanceof Node) {
-                args[i].constantsVector = vector
+            } else if (args[idx] instanceof Node) {
+                args[idx].constantsVector = vector
             }
         }
     }
