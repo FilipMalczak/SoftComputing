@@ -1,5 +1,9 @@
 package com.github.whatever.softcomputing.impl
 
+import com.github.fm_jm.softcomputing.impl.fun.Function
+import com.github.fm_jm.softcomputing.impl.FunctionTree
+import com.github.fm_jm.softcomputing.impl.fun.Node
+import com.github.fm_jm.softcomputing.impl.fun.Var
 import org.junit.Before
 import org.junit.Test
 
