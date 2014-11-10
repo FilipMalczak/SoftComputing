@@ -4,14 +4,19 @@ import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.ga.prob.MP
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 
-/* TODO: implement me! */
+import groovy.transform.Canonical
+
+@Canonical
 class MPImpl implements MP<FunctionTree> {
+    int initialProb
+    int step
+
     @Override
     int getMutationProbability(List<FunctionTree> population, int generation, Context context) {
-        // gen==0/1 ? low
-        //          : d avg(i) > d avg (i-1) ?
-        //                      pm -- : pm ++
-        // masz pm w context
-        return 0
+        generation<2 ?
+            initialProb :
+            context.dAvg(0) > context.dAvg(1) ?
+                context.mutProb - step :
+                context.mutProb + step
     }
 }

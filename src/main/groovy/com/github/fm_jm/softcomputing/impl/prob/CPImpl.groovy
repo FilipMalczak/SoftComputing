@@ -4,14 +4,19 @@ import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.ga.prob.CP
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 
-/* TODO: implement me! */
+import groovy.transform.Canonical
+
+@Canonical
 class CPImpl implements CP<FunctionTree>{
+    int initialProb
+    int step
+
     @Override
     int getCrossoverProbability(List<FunctionTree> population, int generation, Context context) {
-        // gen==0/1 ? low
-        //          : d var(i) > d var (i-1) ?
-        //                      pc -- : pc ++
-        // masz pc w context
-        return 0
+        generation<2 ?
+            initialProb :
+            context.dVariance(0) > context.dVariance(1) ?
+                context.crossProb - step :
+                context.crossProb + step
     }
 }

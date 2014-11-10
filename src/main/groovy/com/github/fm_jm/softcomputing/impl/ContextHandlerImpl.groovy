@@ -21,7 +21,7 @@ class ContextHandlerImpl implements ContextHandler<FunctionTree>{
     }
 
     private FunctionTree findBest(List<FunctionTree> population, Context context){
-        population.max { FunctionTree ft -> ft.evaluate(context) }
+        population.min { FunctionTree ft -> ft.evaluate(context) }
     }
 
     private double avgEval(List<FunctionTree> population, Context context){

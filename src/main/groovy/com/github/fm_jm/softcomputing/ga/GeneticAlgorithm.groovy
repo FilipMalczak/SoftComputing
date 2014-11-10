@@ -78,7 +78,7 @@ class GeneticAlgorithm<S extends Specimen> {
         Math.round(Math.random()*1000) < probability
     }
 
-    private S random(List<S> population) {
+    static <S> S random(List<S> population) {
         population[Math.round(Math.random()*population.size())]
     }
 }
