@@ -1,15 +1,22 @@
 package com.github.fm_jm.softcomputing.impl.sa
 
 import com.github.fm_jm.softcomputing.heuristics.Context
+import com.github.fm_jm.softcomputing.heuristics.Specimen
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 import com.github.fm_jm.softcomputing.sa.operators.NeighbourSelector
 
-/* TODO: implement me!
-* TODO: this may as well be generic, for S not concrete FunctionTree! */
+
 class BasicNeighbourSelector implements NeighbourSelector<FunctionTree> {
 
-
-
+    /**
+     * Neighbour of a funtionTree is a functionTree with one of its constants having a different value.
+     * The new value of constant C is chosen randomly from a range calculated according to the following formula:
+     * Cmin = C - delta*C, Cmax = C + delta*C
+     * @param current The FunctionTree which neighbour we want to be found
+     * @param temperature Current temperature
+     * @param context Context of current GA generation, used in calculating delta
+     * @return Neighbour of the given FunctionTree
+     */
     @Override
     FunctionTree findNeighbour(FunctionTree current, double temperature, Context context) {
         FunctionTree neighbour = current.copy()
@@ -21,9 +28,14 @@ class BasicNeighbourSelector implements NeighbourSelector<FunctionTree> {
         return neighbour
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     */
     private double calculateDelta(Context context){
-        // CP/1k * (davg(i-1)/davg(i))
-        return 0.5  //todo: calculate from CP. bigger CP = bigger delta
+        return context.crossProb/500 * (context.dAvg(1)/context.dAvg(0))
     }
+
 
 }
