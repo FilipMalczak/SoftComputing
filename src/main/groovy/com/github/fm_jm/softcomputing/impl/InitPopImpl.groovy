@@ -2,7 +2,7 @@ package com.github.fm_jm.softcomputing.impl
 
 import com.github.fm_jm.softcomputing.ga.alg.GeneratePopulation
 
-
+/* TODO: implement me! */
 class InitPopImpl implements GeneratePopulation<FunctionTree>{
     @Override
     List<FunctionTree> generate(int size) { // dodać kontekst

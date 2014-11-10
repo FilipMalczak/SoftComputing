@@ -1,8 +1,9 @@
 package com.github.fm_jm.softcomputing.ga.alg
 
-import com.github.fm_jm.softcomputing.ga.Specimen
+import com.github.fm_jm.softcomputing.heuristics.Context
+import com.github.fm_jm.softcomputing.heuristics.Specimen
 
 
 interface ContextHandler<S extends Specimen> {
-    void update(List<S> population, int generation, Map context)
+    void update(List<S> population, int generation, Context context)
 }

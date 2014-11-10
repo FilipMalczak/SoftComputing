@@ -1,5 +1,6 @@
 package com.github.fm_jm.softcomputing.ga
 
+import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.ga.operators.CrossoverOperator
 import com.github.fm_jm.softcomputing.ga.operators.MutationOperator
 import com.github.fm_jm.softcomputing.ga.operators.SelectionOperator
@@ -8,10 +9,7 @@ import com.github.fm_jm.softcomputing.ga.prob.MP
 import com.github.fm_jm.softcomputing.ga.alg.ContextHandler
 import com.github.fm_jm.softcomputing.ga.alg.GeneratePopulation
 import com.github.fm_jm.softcomputing.ga.alg.StopCondition
-import com.github.fm_jm.softcomputing.ga.operators.*
-import com.github.fm_jm.softcomputing.ga.prob.*
-import static com.github.fm_jm.softcomputing.utils.Casting.*
-
+import com.github.fm_jm.softcomputing.heuristics.Specimen
 
 import groovy.transform.Canonical
 
@@ -30,44 +28,46 @@ class GeneticAlgorithm<S extends Specimen> {
     CP<S> cp
     MP<S> mp
 
+    static final double FREE_RADICALS_FACTOR = 0.15
+
     /**
      * Run genetic algorithm parametrized with attributes of this instance.
      * @param callback Closure taking (List<S> population, int generation, Map context) called at the beginning of each
      * population (after context handling/update). Useful for tracking progress or generating CSV data.
      * @return Last population, sorted (ascending) by evaluation.
      */
-    List<S> doRun(Map context) {
-        List<S> population = $(generatePopulation)(populationSize)
+    List<S> doRun(Context context) {
+        List<S> population = generatePopulation.generate(populationSize)
         int generation = 0
 
-        while ($(stop)(population, generation, context)) {
-            def mutProb = $(mp)(population, generation, context)
-            def crossProb = $(cp)(population, generation, context)
+        while (stop.shouldStop(population, generation, context)) {
+            def mutProb = mp.getMutationProbability(population, generation, context)
+            def crossProb = cp.getCrossoverProbability(population, generation, context)
             context.mutProb = mutProb
             context.crossProb = crossProb
-            $(contextHandler)(population, generation, context)
+            contextHandler.update(population, generation, context)
 
             List<S> tempPop = population.collect { it.copy() } // fixme: is it worth it? (see next lines)
             // if we're gonna collect some specimens through the whole algortithm run, then it enforces immutability
             // between geenrations and it is worth it
             // if we're only gonna collect statistics, then this may be left out.
 
-            tempPop += $(generatePopulation)(0.15*populationSize) // "wolne rodniki"
+            tempPop += generatePopulation.generate(FREE_RADICALS_FACTOR*populationSize) // "wolne rodniki" / "free radicals"
 
             while (tempPop.size()<2*populationSize) {
                 def s1 = random(population)
                 def s2 = random(population)
                 if (happens(crossProb))
-                    tempPop << crossover(s1, s2)
+                    tempPop << crossover.crossOver(s1, s2, context)
             }
 
             tempPop = tempPop.collect { S s ->
                 happens(mutProb) ?
-                    $(mutation)(s)
+                    mutation.mutate(s, context)
                     : s
             }
 
-            population = $(select)(populationSize, tempPop, generation, context)
+            population = select.selectNewPopulation(populationSize, tempPop, generation, context)
 
             generation++
         }

@@ -1,6 +1,7 @@
 package com.github.fm_jm.softcomputing.impl
 
-import com.github.fm_jm.softcomputing.ga.Specimen
+import com.github.fm_jm.softcomputing.heuristics.Context
+import com.github.fm_jm.softcomputing.heuristics.Specimen
 import com.github.fm_jm.softcomputing.impl.fun.Node
 
 import groovy.transform.Canonical
@@ -17,7 +18,7 @@ class FunctionTree implements Specimen{
      * In future we can introduce evaluation based on tree depth, cost, etc.
      */
     @Override
-    double evaluate(Map context) {
+    double evaluate(Context context) {
         root.cost * context.points.collect { Map<String, Double> point ->
             squaredError(point, context.valueSetName)
         }.sum() / context.points.size()

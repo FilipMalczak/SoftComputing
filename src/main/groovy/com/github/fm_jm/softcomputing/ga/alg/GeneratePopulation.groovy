@@ -1,6 +1,6 @@
 package com.github.fm_jm.softcomputing.ga.alg
 
-import com.github.fm_jm.softcomputing.ga.Specimen
+import com.github.fm_jm.softcomputing.heuristics.Specimen
 
 
 public interface GeneratePopulation<S extends Specimen> {

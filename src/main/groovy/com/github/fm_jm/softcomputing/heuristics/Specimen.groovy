@@ -1,4 +1,4 @@
-package com.github.fm_jm.softcomputing.ga
+package com.github.fm_jm.softcomputing.heuristics
 
 interface Specimen {
     /**
@@ -7,7 +7,7 @@ interface Specimen {
      *
      * <strong>MEMOIZE IT WHENEVER POSSIBLE!</strong>
      */
-    double evaluate(Map context)
+    double evaluate(Context context)
 
     /**
      * Cloneable has quite complicated contract and may have some weird behaviour in some cases. Use this to obtain
