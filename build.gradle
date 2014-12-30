@@ -18,6 +18,7 @@ dependencies {
     // Common dependencies
     compile 'org.codehaus.groovy:groovy-all:2.3.6'
     compile 'org.slf4j:slf4j-api:1.7.2'
+    compile 'com.opencsv:opencsv:3.1'
 
     runtime 'org.slf4j:slf4j-log4j12:1.7.2'
 

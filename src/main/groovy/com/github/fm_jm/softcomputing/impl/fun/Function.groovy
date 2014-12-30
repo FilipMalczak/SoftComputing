@@ -8,5 +8,15 @@ enum Function {
     PRODUCT,
     SQRT,
     LN,
-    LESS_THAN
+    LESS_THAN,
+    COS,
+    SIN,
+    DIV,
+    SUBTRACT,
+    EXP,
+    ABS,
+    MAX,
+    MIN,
+    SIGN,
+    TANH
 }

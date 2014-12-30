@@ -1,5 +1,6 @@
 package com.github.whatever.softcomputing.impl
 
+import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.impl.fun.Function
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 import com.github.fm_jm.softcomputing.impl.fun.Node
@@ -65,7 +66,7 @@ class FunctionTreeTest extends GroovyTestCase {
                      [ x: 1, y:5, z: 12 ],
                      [ x: 1, y:-1, z: 0 ]
                  ]
-            ]) == 0
+            ] as Context) == 0
         assert tree.constantsVector == [1.0, 1.0, 2.0]
         tree.constantsVector = [2.0, 3.0, 4.0]
         assert tree == modified
