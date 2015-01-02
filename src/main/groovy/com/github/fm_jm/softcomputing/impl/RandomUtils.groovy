@@ -12,6 +12,10 @@ class RandomUtils {
         population[r.nextInt(population.size())]
     }
 
+    static int random(int max){
+        r.nextInt(max)
+    }
+
     static double random(double from, double to){
         r.nextDouble()*(to-from)+from
     }
