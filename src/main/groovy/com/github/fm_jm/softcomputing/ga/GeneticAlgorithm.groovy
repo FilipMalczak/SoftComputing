@@ -10,6 +10,7 @@ import com.github.fm_jm.softcomputing.ga.alg.ContextHandler
 import com.github.fm_jm.softcomputing.ga.alg.GeneratePopulation
 import com.github.fm_jm.softcomputing.ga.alg.StopCondition
 import com.github.fm_jm.softcomputing.heuristics.Specimen
+import static com.github.fm_jm.softcomputing.impl.RandomUtils.*
 
 import groovy.transform.Canonical
 
@@ -74,11 +75,5 @@ class GeneticAlgorithm<S extends Specimen> {
         return population
     }
 
-    private boolean happens(int probability) {
-        Math.round(Math.random()*1000) < probability
-    }
 
-    static <S> S random(List<S> population) {
-        population[Math.round(Math.random()*population.size())]
-    }
 }

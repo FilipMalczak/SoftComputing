@@ -6,14 +6,15 @@ import com.github.fm_jm.softcomputing.impl.fun.Function
 import com.github.fm_jm.softcomputing.impl.fun.Node
 import com.github.fm_jm.softcomputing.impl.fun.FunctionsDefinitions
 import com.github.fm_jm.softcomputing.impl.fun.Var
+import static com.github.fm_jm.softcomputing.impl.RandomUtils.*
+
 
 class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
 
     static final int MIN_DEPTH = 3
     static final int  MAX_INITIAL_WIDTH = 10
-    static final double EARLY_LEAF_PROB = 0.4
-    static final double CONST_PROB = 0.4
-    static final Random r = new Random()
+    static final int EARLY_LEAF_PROB = 400
+    static final int CONST_PROB = 400
     static final List<Function> functions = [*Function.values()]
 
 
@@ -28,13 +29,13 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
     }
 
     Node randomNode(Context context, int lvl=MIN_DEPTH-2){
-        Function f = functions[r.nextInt(functions.size())]
+        Function f = random(functions)
         int argc = FunctionsDefinitions.ARGS_COUNTS[f]
         if (argc<=0)
             argc = 1+r.nextInt(MAX_INITIAL_WIDTH-1)
         List args
         if (lvl>0) {
-            List<Boolean> early_leafes = [false] + (2..argc).collect { r.nextDouble()<EARLY_LEAF_PROB }
+            List<Boolean> early_leafes = [false] +randomBools(argc-1, EARLY_LEAF_PROB)
             Collections.shuffle(early_leafes)
             args = early_leafes.collect { it ? randomLeaf(context) : randomNode(context, lvl-1) }
         } else
@@ -43,7 +44,7 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
     }
 
     def randomLeaf(Context context){
-        r.nextDouble()<CONST_PROB ?
+        happens(CONST_PROB) ?
               randomConst()
             : randomVar(context)
     }
@@ -53,7 +54,7 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
     }
 
     double randomConst(){
-        r.nextDouble()*200 - 100
+        random(-100.0, 100.0)
     }
 
 }
