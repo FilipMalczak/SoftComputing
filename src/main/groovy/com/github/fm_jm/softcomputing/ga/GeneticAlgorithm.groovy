@@ -37,7 +37,7 @@ class GeneticAlgorithm<S extends Specimen> {
      * @return Last population, sorted (ascending) by evaluation.
      */
     List<S> doRun(Context context) {
-        List<S> population = generatePopulation.generate(populationSize)
+        List<S> population = generatePopulation.generate(populationSize, context)
         int generation = 0
 
         while (stop.shouldStop(population, generation, context)) {
@@ -52,7 +52,7 @@ class GeneticAlgorithm<S extends Specimen> {
             // between geenrations and it is worth it
             // if we're only gonna collect statistics, then this may be left out.
 
-            tempPop += generatePopulation.generate(FREE_RADICALS_FACTOR*populationSize) // "wolne rodniki" / "free radicals"
+            tempPop += generatePopulation.generate(FREE_RADICALS_FACTOR*populationSize, context) // "wolne rodniki" / "free radicals"
 
             while (tempPop.size()<2*populationSize) {
                 def s1 = random(population)
