@@ -68,6 +68,7 @@ class FunctionTreeTest extends GroovyTestCase {
                  ]
             ] as Context) == 0
         assert tree.constantsVector == [1.0, 1.0, 2.0]
+        assert tree.root.cost == 1.1
         tree.constantsVector = [2.0, 3.0, 4.0]
         assert tree == modified
     }

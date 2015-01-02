@@ -29,7 +29,15 @@ class Node {
      * It still may depend of args and their cost.
      */
     double getCost(){
-        1
+        def argsCosts = args.collect {
+            switch(it) {
+                case Number: return 0
+                case Var: return 0
+                case Node: return it.cost
+                default: assert "Unknown thing" && it && false
+            }
+        }
+        return FunctionsDefinitions.FUN_COSTS[foo] + argsCosts.sum()
     }
 
     int getDepth(){
