@@ -49,8 +49,9 @@ Dictionary
 TODO
 ----
 
-- Figure out which operator is naughty enough to not care about argument count restrictions
-- Basically, make it work without throwing up
+- Fix the nullpointer in context. After all, bounds checks should be performed, we've got problems during early generations
+- Basically, make it work without throwing up. Run Example3.groovy and follow the exceptions, chosen one!
+    - Oh it's bad luck to be you, chosen one of many is you!
 - Figure out what to do with functions cost
 - Make it find approximations more useful than MAX(x, x, x, x, x, x, 69, x, x, DIV(x,x))
 - Implement some testing procedure that will save results in a nice CSV

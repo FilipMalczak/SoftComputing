@@ -21,6 +21,8 @@ class RandomUtils {
     }
 
     static List<Boolean> randomBools(int size, int prob){
+        if (size <= 0)
+            return []
         (1..size).collect { happens(prob) }
     }
 }

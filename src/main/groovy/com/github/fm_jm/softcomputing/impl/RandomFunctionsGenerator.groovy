@@ -35,9 +35,9 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
             argc = 1+r.nextInt(MAX_INITIAL_WIDTH-1)
         List args
         if (lvl>0) {
-            List<Boolean> early_leafes = [false] +randomBools(argc-1, EARLY_LEAF_PROB)
-            Collections.shuffle(early_leafes)
-            args = early_leafes.collect { it ? randomLeaf(context) : randomNode(context, lvl-1) }
+            List<Boolean> early_leaves = [false] +randomBools(argc-1, EARLY_LEAF_PROB)
+            Collections.shuffle(early_leaves)
+            args = early_leaves.collect { it ? randomLeaf(context) : randomNode(context, lvl-1) }
         } else
             args = (1..argc).collect { randomLeaf(context) }
         new Node(foo: f, args: args)

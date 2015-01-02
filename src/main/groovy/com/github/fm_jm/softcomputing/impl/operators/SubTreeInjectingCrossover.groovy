@@ -17,10 +17,11 @@ class SubTreeInjectingCrossover implements CrossoverOperator<FunctionTree> {
     List<FunctionTree> crossAtDepths(FunctionTree f1, FunctionTree f2, int d1, int d2){
         FunctionTree out1 = f1.copy()
         FunctionTree out2 = f2.copy()
-        Node parent1 = null
-        Node parent2 = null
         Node n1 = out1.root
         Node n2 = out2.root
+        Node parent1 = n1
+        Node parent2 = n2
+
 
         (d1-1).times {
             parent1 = n1
