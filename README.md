@@ -39,9 +39,19 @@ Dictionary
 
 * Specimen - object in searched space (function tree i some form, in case of our problem)
 * Population - list of _Specimen_ s
-* Evaluation - function from searched space to real numbers (represented as double), which should be minimalised (minimised? linguistic help, please)
+* Evaluation - function from searched space to real numbers (represented as double), which should be minimised
 * Generation - number of processed population; number of genetic algorithms iteration
 * CP - crossover probability; may change with each generation
 * MP - mutation probability; may change with each generation
 * (Evolution) Context - namespace to keep all statistics on past and current populations, for parameter adaptation sake
 * Context handler - piece of logic that takes care of filling context with statistics at the beginning of each GA iteration.
+
+TODO
+----
+
+- Figure out which operator is naughty enough to not care about argument count restrictions
+- Basically, make it work without throwing up
+- Figure out what to do with functions cost
+- Make it find approximations more useful than MAX(x, x, x, x, x, x, 69, x, x, DIV(x,x))
+- Implement some testing procedure that will save results in a nice CSV
+- Perhaps some kind of experimentation procedure in order to find the best parameter values?
