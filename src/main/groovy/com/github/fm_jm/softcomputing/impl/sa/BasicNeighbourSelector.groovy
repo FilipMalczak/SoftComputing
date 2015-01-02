@@ -3,6 +3,7 @@ package com.github.fm_jm.softcomputing.impl.sa
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.heuristics.Specimen
 import com.github.fm_jm.softcomputing.impl.FunctionTree
+import com.github.fm_jm.softcomputing.impl.RandomUtils
 import com.github.fm_jm.softcomputing.sa.operators.NeighbourSelector
 
 
@@ -21,7 +22,7 @@ class BasicNeighbourSelector implements NeighbourSelector<FunctionTree> {
     FunctionTree findNeighbour(FunctionTree current, double temperature, Context context) {
         FunctionTree neighbour = current.copy()
         List<Double> constants = current.constantsVector
-        int modifiedValueIndex = Math.round(Math.random()*constants.size())
+        int modifiedValueIndex = RandomUtils.random(constants.size())//Math.round(Math.random()*constants.size())
         double delta = calculateDelta(context)*constants[modifiedValueIndex]
         constants[modifiedValueIndex] = Math.random()*(2*delta) + constants[modifiedValueIndex] - delta
         neighbour.setConstantsVector(constants)

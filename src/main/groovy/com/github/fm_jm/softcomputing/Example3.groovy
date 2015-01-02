@@ -1,22 +1,7 @@
 package com.github.fm_jm.softcomputing
 
-import com.github.fm_jm.softcomputing.ga.GeneticAlgorithm
 import com.github.fm_jm.softcomputing.heuristics.Context
-import com.github.fm_jm.softcomputing.impl.ContextHandlerImpl
 import com.github.fm_jm.softcomputing.impl.ContextLoader
-import com.github.fm_jm.softcomputing.impl.FunctionTree
-import com.github.fm_jm.softcomputing.impl.RandomFunctionsGenerator
-import com.github.fm_jm.softcomputing.impl.StopCondImpl
-import com.github.fm_jm.softcomputing.impl.operators.AnnealingMutation
-import com.github.fm_jm.softcomputing.impl.operators.SubTreeInjectingCrossover
-import com.github.fm_jm.softcomputing.impl.prob.CPImpl
-import com.github.fm_jm.softcomputing.impl.prob.MPImpl
-import com.github.fm_jm.softcomputing.impl.prob.SelectImpl
-import com.github.fm_jm.softcomputing.impl.sa.BasicNeighbourSelector
-import com.github.fm_jm.softcomputing.impl.sa.BoltzmannAcceptance
-import com.github.fm_jm.softcomputing.impl.sa.FastBoltzmannScheme
-import com.github.fm_jm.softcomputing.sa.SimulatedAnnealing
-
 
 File file = new File(this.class.classLoader.getResource("ln+cos.csv").toURI())
 
@@ -34,7 +19,7 @@ Context loaded = ContextLoader.loadFromFile(file)
 //        new MPImpl(200, 10)
 //)
 
-def ga = Utils.defaultGA(100, 50, 750, 10, 200, 10)
+def ga = Utils.defaultGA(15, 10, 750, 10, 200, 10)
 
 def pop = ga.doRun(loaded)
 

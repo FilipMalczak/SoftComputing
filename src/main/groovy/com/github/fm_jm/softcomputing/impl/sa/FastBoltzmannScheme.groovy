@@ -6,7 +6,7 @@ import com.github.fm_jm.softcomputing.sa.operators.CoolingScheme
 
 class FastBoltzmannScheme implements CoolingScheme {
 
-    static double INITIAL_TEMP = 1000        //10k
+    static double INITIAL_TEMP = 100        //10k
     static double MINIMAL_TEMP = 1           //10
                                             // needs to be tuned for expected range of energyDiffs
 
@@ -27,6 +27,6 @@ class FastBoltzmannScheme implements CoolingScheme {
     }
 
     double calculateCoolingFactor(Context context){
-        return 1/context.mutProb * Math.abs(context.dVariance(1)/ context.dVariance(0))
+        1/context.mutProb * Math.abs(context.dVariance(1)/ context.dVariance(0))
     }
 }

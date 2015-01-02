@@ -5,11 +5,11 @@ import com.github.fm_jm.softcomputing.ga.alg.ContextHandler
 import com.github.fm_jm.softcomputing.heuristics.Specimen
 
 
-class ContextHandlerImpl<S extends Specimen> implements ContextHandler<S>{
+class SimpleContextHandler<S extends Specimen> implements ContextHandler<S>{
 
     @Override
     void update(List<S> population, int generation, Context context) {
-
+        println "GENERATION $generation START"
         def popBest = findBest(population, context).copy()
         // save copy of best
         if (generation==0)
@@ -22,21 +22,24 @@ class ContextHandlerImpl<S extends Specimen> implements ContextHandler<S>{
         context.pushVariance(variance(population, context, avg))
         context.pushBest(popBest.evaluate(context))
         context.pushWorst(findWorst(population, context).evaluate(context))
+        println "GENERATION $generation UPDATED"
     }
 
-    private S findBest(List<S> population, Context context){
+    static S findBest(List<S> population, Context context){
         population.min { S ft -> ft.evaluate(context) }
     }
 
-    private S findWorst(List<S> population, Context context){
+    static S findWorst(List<S> population, Context context){
         population.max { S ft -> ft.evaluate(context) }
     }
 
-    private double avgEval(List<S> population, Context context){
-        population.collect { S ft -> ft.evaluate(context) }.sum() / population.size()
+    static double avgEval(List<S> population, Context context){
+        def collection  = population.collect { S ft -> ft.evaluate(context)/ population.size() }
+        collection.sum()
     }
 
-    private double variance(List<S> population, Context context, double avg){
-        population.collect { S ft -> Math.abs(ft.evaluate(context) - avg) }.sum() / population.size()
+    static double variance(List<S> population, Context context, double avg){
+        def collection = population.collect { S ft -> Math.abs(ft.evaluate(context) - avg)/ population.size() }
+        collection.sum()
     }
 }

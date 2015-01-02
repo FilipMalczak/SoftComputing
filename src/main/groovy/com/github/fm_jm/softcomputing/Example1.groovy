@@ -5,13 +5,12 @@ import com.github.fm_jm.softcomputing.ga.operators.MutationOperator
 import com.github.fm_jm.softcomputing.ga.operators.SelectionOperator
 import com.github.fm_jm.softcomputing.ga.prob.CP
 import com.github.fm_jm.softcomputing.ga.prob.MP
-import com.github.fm_jm.softcomputing.ga.alg.ContextHandler
 import com.github.fm_jm.softcomputing.ga.alg.GeneratePopulation
 import com.github.fm_jm.softcomputing.ga.alg.StopCondition
 import com.github.fm_jm.softcomputing.ga.GeneticAlgorithm
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.heuristics.Specimen
-import com.github.fm_jm.softcomputing.impl.ContextHandlerImpl
+import com.github.fm_jm.softcomputing.impl.SimpleContextHandler
 
 import groovy.transform.Canonical
 
@@ -39,7 +38,7 @@ class Pair implements Specimen{
 def ga = new GeneticAlgorithm<Pair>(
     100,
 //    {} as ContextHandler<Pair>,
-    new ContextHandlerImpl<Pair>(),
+    new SimpleContextHandler<Pair>(),
     { int size, context ->
         (0..<size).collect {
             new Pair(Math.round(Math.random()*50), Math.round(Math.random()*50))

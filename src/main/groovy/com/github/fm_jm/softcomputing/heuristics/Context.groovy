@@ -1,7 +1,5 @@
 package com.github.fm_jm.softcomputing.heuristics
 
-import com.github.fm_jm.softcomputing.impl.FunctionTree
-
 /**
  * It's not totally reusable, but will do.
  */
@@ -47,7 +45,7 @@ class Context<S extends Specimen> {
      * No bounds checks are performed!
      */
     double dAvg(int dt){
-        avgHistory[dt] - avgHistory[dt+1]
+        avgHistory.size()<2 ? (avgHistory ? avgHistory[0] : 0.0) : avgHistory[dt] - avgHistory[dt+1]
     }
 
     /**
@@ -55,6 +53,6 @@ class Context<S extends Specimen> {
      * No bounds checks are performed!
      */
     double dVariance(int dt){
-        varianceHistory[dt] - varianceHistory[dt+1]
+        varianceHistory.size()<2 ? (varianceHistory ? varianceHistory[0] : 1.0 ) : varianceHistory[dt] - varianceHistory[dt+1]
     }
 }

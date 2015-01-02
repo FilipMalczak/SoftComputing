@@ -16,11 +16,20 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
     static final int EARLY_LEAF_PROB = 400
     static final int CONST_PROB = 400
     static final List<Function> functions = [*Function.values()]
-
+    static final double MAX_AVG_FOR_RESULT = 10000.0;
 
     @Override
     List<FunctionTree> generate(int size, Context context) {
         assert size>0
+        List<FunctionTree> out
+        while (out = generatePossiblyWrong(size, context))
+            if (SimpleContextHandler.avgEval(out, context)) // this should be elsewhere, but screw it
+                return out
+    }
+
+
+
+    List<FunctionTree> generatePossiblyWrong(int size, Context context) {
         (1..size).collect { randomInstance(context) }
     }
 
@@ -54,7 +63,7 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
     }
 
     double randomConst(){
-        random(-100.0, 100.0)
+        random(-1.0, 1.0)
     }
 
 }

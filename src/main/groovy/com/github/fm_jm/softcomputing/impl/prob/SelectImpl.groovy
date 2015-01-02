@@ -4,6 +4,7 @@ import com.github.fm_jm.softcomputing.ga.GeneticAlgorithm
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.ga.operators.SelectionOperator
 import com.github.fm_jm.softcomputing.impl.FunctionTree
+import com.github.fm_jm.softcomputing.impl.RandomUtils
 
 import groovy.transform.Canonical
 
@@ -31,7 +32,7 @@ class SelectImpl implements SelectionOperator<FunctionTree>{
     private FunctionTree tourney(List<FunctionTree> pop, Context context){
         def pool = []
         TOURNEY_SIZE.times {
-            pool.add(GeneticAlgorithm.random(pop))
+            pool.add(RandomUtils.random(pop))
         }
         return pool.min { FunctionTree ft -> ft.evaluate(context) }
     }
