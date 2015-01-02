@@ -57,4 +57,8 @@ class FunctionTree implements Specimen{
         1 + root.depth
     }
 
+    String toString(){
+        return "$c * $root"
+    }
+
 }

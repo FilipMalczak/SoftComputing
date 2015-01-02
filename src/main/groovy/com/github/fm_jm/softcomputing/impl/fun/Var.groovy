@@ -15,4 +15,8 @@ class Var {
             vars[name] = new Var(name)
         vars[name]
     }
+
+    String toString(){
+        return "$name"
+    }
 }
