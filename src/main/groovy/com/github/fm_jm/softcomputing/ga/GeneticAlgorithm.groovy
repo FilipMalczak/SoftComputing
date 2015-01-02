@@ -41,7 +41,7 @@ class GeneticAlgorithm<S extends Specimen> {
         List<S> population = generatePopulation.generate(populationSize, context)
         int generation = 0
 
-        while (stop.shouldStop(population, generation, context)) {
+        while (!stop.shouldStop(population, generation, context)) {
             def mutProb = mp.getMutationProbability(population, generation, context)
             def crossProb = cp.getCrossoverProbability(population, generation, context)
             context.mutProb = mutProb
@@ -53,20 +53,20 @@ class GeneticAlgorithm<S extends Specimen> {
             // between geenrations and it is worth it
             // if we're only gonna collect statistics, then this may be left out.
 
-            tempPop += generatePopulation.generate(FREE_RADICALS_FACTOR*populationSize, context) // "wolne rodniki" / "free radicals"
+            tempPop += generatePopulation.generate((int)Math.ceil(FREE_RADICALS_FACTOR*populationSize), context) // "wolne rodniki" / "free radicals"
 
             while (tempPop.size()<2*populationSize) {
                 def s1 = random(population)
                 def s2 = random(population)
                 if (happens(crossProb))
-                    tempPop << crossover.crossOver(s1, s2, context)
+                    tempPop += crossover.crossOver(s1, s2, context)
             }
 
             tempPop = tempPop.collect { S s ->
                 happens(mutProb) ?
                     mutation.mutate(s, context)
-                    : s
-            }
+                    : [s]
+            }.flatten()
 
             population = select.selectNewPopulation(populationSize, tempPop, generation, context)
 
