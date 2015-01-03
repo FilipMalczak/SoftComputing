@@ -19,7 +19,7 @@ class FunctionTree implements Specimen{
      */
     @Override
     double evaluate(Context context) {
-        root.cost * context.points.collect { Map<String, Double> point ->
+        root.cost + context.points.collect { Map<String, Double> point ->
             squaredError(point, context.valueSetName)
         }.sum() / context.points.size()
     }

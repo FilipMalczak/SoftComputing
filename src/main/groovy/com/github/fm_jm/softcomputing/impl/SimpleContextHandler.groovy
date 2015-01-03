@@ -21,6 +21,18 @@ class SimpleContextHandler<S extends Specimen> implements ContextHandler<S>{
         context.pushVariance(variance(population, context, avg))
         context.pushBest(popBest.evaluate(context))
         context.pushWorst(findWorst(population, context).evaluate(context))
+        context.pushCP(context.crossProb/1000.0)
+        context.pushMP(context.mutProb/1000.0)
+    }
+
+    @Override
+    void start(Context context) {
+        context.startTime = new Date()
+    }
+
+    @Override
+    void finish(Context context) {
+        context.endTime = new Date()
     }
 
     static S findBest(List<S> population, Context context){

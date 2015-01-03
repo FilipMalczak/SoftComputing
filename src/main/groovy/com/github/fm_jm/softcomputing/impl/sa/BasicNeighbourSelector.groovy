@@ -35,7 +35,7 @@ class BasicNeighbourSelector implements NeighbourSelector<FunctionTree> {
      * @return
      */
     private double calculateDelta(Context context){
-        return context.crossProb/500 * (context.dAvg(1)/context.dAvg(0))
+        return 1+context.crossProb/500// * (context.dAvg(1)/context.dAvg(0))
     }
 
 

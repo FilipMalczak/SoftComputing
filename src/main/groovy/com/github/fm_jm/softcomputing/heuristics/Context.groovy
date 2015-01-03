@@ -13,6 +13,10 @@ class Context<S extends Specimen> {
     String valueSetName
     List<Map<String, Double>> points
 
+    // fields for measuring time
+    Date startTime = null
+    Date endTime = null
+
     // history for analysis
     S globalBest = null
 
@@ -20,6 +24,8 @@ class Context<S extends Specimen> {
     List<Double> varianceHistory = []
     List<Double> bestHistory = []
     List<Double> worstHistory = []
+    List<Double> CPHistory = []
+    List<Double> MPHistory = []
 
     void pushAvg(double avg){
         avgHistory = [ avg ] + avgHistory
@@ -35,6 +41,14 @@ class Context<S extends Specimen> {
 
     void pushWorst(double worst){
         worstHistory = [ worst ] + worstHistory
+    }
+
+    void pushCP(double cp){
+        CPHistory = [cp] + CPHistory
+    }
+
+    void pushMP(double mp){
+        MPHistory = [mp] + MPHistory
     }
 
 

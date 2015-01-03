@@ -15,6 +15,7 @@ import com.github.fm_jm.softcomputing.impl.sa.BasicNeighbourSelector
 import com.github.fm_jm.softcomputing.impl.sa.BoltzmannAcceptance
 import com.github.fm_jm.softcomputing.impl.sa.FastBoltzmannScheme
 import com.github.fm_jm.softcomputing.sa.SimulatedAnnealing
+import groovy.time.TimeCategory
 
 class Utils {
 
@@ -63,6 +64,11 @@ class Utils {
         println( (["avg"]+context.avgHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t") )
         println( (["worst"]+context.worstHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t") )
         println( (["variance"]+context.varianceHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t") )
+        println( (["CP"]+context.CPHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t"))
+        println( (["MP"]+context.MPHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t"))
+        println()
+        println()
+        println("Total execution time: ${TimeCategory.minus(context.endTime, context.startTime)}")
     }
 
 }

@@ -41,6 +41,8 @@ class GeneticAlgorithm<S extends Specimen> {
         List<S> population = generatePopulation.generate(populationSize, context)
         int generation = 0
 
+        contextHandler.start(context)
+
         while (!stop.shouldStop(population, generation, context)) {
             def mutProb = mp.getMutationProbability(population, generation, context)
             def crossProb = cp.getCrossoverProbability(population, generation, context)
@@ -69,6 +71,7 @@ class GeneticAlgorithm<S extends Specimen> {
             population = select.selectNewPopulation(populationSize, tempPop, generation, context)
             generation++
         }
+        contextHandler.finish(context)
         return population
     }
 

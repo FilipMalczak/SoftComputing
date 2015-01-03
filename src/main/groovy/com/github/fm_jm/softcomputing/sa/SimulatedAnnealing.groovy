@@ -2,8 +2,6 @@ package com.github.fm_jm.softcomputing.sa
 
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.heuristics.Specimen
-import com.github.fm_jm.softcomputing.impl.FunctionTree
-import com.github.fm_jm.softcomputing.ga.operators.MutationOperator
 import com.github.fm_jm.softcomputing.sa.operators.AcceptanceFunction
 import com.github.fm_jm.softcomputing.sa.operators.CoolingScheme
 import com.github.fm_jm.softcomputing.sa.operators.NeighbourSelector

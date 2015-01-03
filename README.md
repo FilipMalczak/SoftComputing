@@ -53,9 +53,16 @@ TODO
     supplied sample results for one run for this dataset (for 10 generations with population of 15). Results are...
      well, suprising - in converges very fast... I'm optimistic about this project.
 
-- Figure out what to do with functions cost
 - Make it find approximations more useful than MAX(x, x, x, x, x, x, 69, x, x, DIV(x,x))
 - Implement some testing procedure that will save results in a nice CSV (CSV raport is partially implemented)
 - Perhaps some kind of experimentation procedure in order to find the best parameter values?
-- Context handler should also store CP/MP and cooling factor in each generation - they will look cute in CSV report
-- I've seen situation where cooling factor (result of calculateCoolingFactor) was 119764.77108142491, so SA ended after one iteration
+
+Resolved TODO
+-------------
+
+- cost is now simply added to the error. works well enough, I guess, it's hard to tell
+- cooling factor is now fixed. I decided to screw variance and just use 1/MP, variance differences turned out to be 
+  too great. Thanks to that the algorithm now stopped freezing
+- selecting neighbours in SA used to depend on differences in averages. Scrapped it, now it depends on CP
+- context now also stores CP and MP in each generation. there's no reason to store cooling factor, it's just 1/MP now
+- context also stores start and finish times, added total exec time to csv printer
