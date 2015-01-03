@@ -9,7 +9,6 @@ class SimpleContextHandler<S extends Specimen> implements ContextHandler<S>{
 
     @Override
     void update(List<S> population, int generation, Context context) {
-        println "GENERATION $generation START"
         def popBest = findBest(population, context).copy()
         // save copy of best
         if (generation==0)
@@ -22,7 +21,6 @@ class SimpleContextHandler<S extends Specimen> implements ContextHandler<S>{
         context.pushVariance(variance(population, context, avg))
         context.pushBest(popBest.evaluate(context))
         context.pushWorst(findWorst(population, context).evaluate(context))
-        println "GENERATION $generation UPDATED"
     }
 
     static S findBest(List<S> population, Context context){

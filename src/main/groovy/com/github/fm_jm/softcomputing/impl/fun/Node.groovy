@@ -85,12 +85,13 @@ class Node {
     }
 
     String toString(){
-        StringBuilder sb = new StringBuilder("$foo(")
-        args.each {
-            sb.append("$it, ")
-        }
-        sb.delete(sb.size()-2, sb.size())
-        sb.append(")")
-        return sb.toString()
+        "$foo(${args.collect {"$it"}.join(", ")})"
+//        StringBuilder sb = new StringBuilder("$foo(")
+//        args.each {
+//            sb.append("$it, ")
+//        }
+//        sb.delete(sb.size()-2, sb.size())
+//        sb.append(")")
+//        return sb.toString()
     }
 }

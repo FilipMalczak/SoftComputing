@@ -23,7 +23,7 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
         assert size>0
         List<FunctionTree> out
         while (out = generatePossiblyWrong(size, context))
-            if (SimpleContextHandler.avgEval(out, context)) // this should be elsewhere, but screw it
+            if (SimpleContextHandler.avgEval(out, context)<MAX_AVG_FOR_RESULT) // this should be elsewhere, but screw it
                 return out
     }
 

@@ -61,15 +61,12 @@ class GeneticAlgorithm<S extends Specimen> {
                 if (happens(crossProb))
                     tempPop += crossover.crossOver(s1, s2, context)
             }
-            println "gen $generation crossed over"
             tempPop = tempPop.collect { S s ->
                 happens(mutProb) ?
                     mutation.mutate(s, context)
                     : [s]
             }.flatten()
-            println "gen $generation mutated"
             population = select.selectNewPopulation(populationSize, tempPop, generation, context)
-            println "after select"
             generation++
         }
         return population

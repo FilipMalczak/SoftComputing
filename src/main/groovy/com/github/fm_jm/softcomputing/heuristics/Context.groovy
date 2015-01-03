@@ -20,29 +20,27 @@ class Context<S extends Specimen> {
     List<Double> varianceHistory = []
     List<Double> bestHistory = []
     List<Double> worstHistory = []
-//    static final int HISTORY_LENGTH = 3
 
     void pushAvg(double avg){
-        avgHistory = [ avg ] + avgHistory//.subList(0, HISTORY_LENGTH-1)
+        avgHistory = [ avg ] + avgHistory
     }
 
     void pushVariance(double var){
-        varianceHistory = [ var ] + varianceHistory//.subList(0, HISTORY_LENGTH-1)
+        varianceHistory = [ var ] + varianceHistory
     }
 
     void pushBest(double best){
-        bestHistory = [ best ] + bestHistory//.subList(0, HISTORY_LENGTH-1)
+        bestHistory = [ best ] + bestHistory
     }
 
     void pushWorst(double worst){
-        worstHistory = [ worst ] + worstHistory//.subList(0, HISTORY_LENGTH-1)
+        worstHistory = [ worst ] + worstHistory
     }
 
 
 
     /**
      * dAvg(dt) = avg(t-dt) - avg(t-dt-1)
-     * No bounds checks are performed!
      */
     double dAvg(int dt){
         dt+1<avgHistory.size() ?
@@ -50,16 +48,10 @@ class Context<S extends Specimen> {
             (avgHistory.size()<2 ?
                 (avgHistory.size() ? avgHistory[0] : 0.0) :
                 avgHistory[-2] - avgHistory[-1] )
-//        try {
-//            avgHistory.size() < 2 ? (avgHistory ? avgHistory[0] : 0.0) : (avgHistory[dt] - avgHistory[dt + 1])
-//        } catch (Throwable t) {
-//            throw t
-//        }
     }
 
     /**
      * dVariance(dt) = variance(t-dt) - variance(t-dt-1)
-     * No bounds checks are performed!
      */
     double dVariance(int dt){
         dt+1<varianceHistory.size() ?
@@ -67,6 +59,5 @@ class Context<S extends Specimen> {
             (varianceHistory.size()<2 ?
                 (varianceHistory.size() ? varianceHistory[0] : 1.0) :
                 varianceHistory[-2] - varianceHistory[-1] )
-//        varianceHistory.size()<2 ? (varianceHistory ? varianceHistory[0] : 1.0 ) : (varianceHistory[dt] - varianceHistory[dt+1])
     }
 }
