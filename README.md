@@ -53,7 +53,6 @@ TODO
     supplied sample results for one run for this dataset (for 10 generations with population of 15). Results are...
      well, suprising - in converges very fast... I'm optimistic about this project.
 
-- clean up prints
 - Figure out what to do with functions cost
 - Make it find approximations more useful than MAX(x, x, x, x, x, x, 69, x, x, DIV(x,x))
 - Implement some testing procedure that will save results in a nice CSV (CSV raport is partially implemented)
