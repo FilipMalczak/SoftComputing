@@ -18,6 +18,7 @@ class FastBoltzmannScheme implements CoolingScheme {
 
     @Override
     double initialTemperature(Context context) {
+        println "factor ${calculateCoolingFactor(context)}"
         return INITIAL_TEMP
     }
 

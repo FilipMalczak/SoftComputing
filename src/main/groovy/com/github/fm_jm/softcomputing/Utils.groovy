@@ -1,6 +1,7 @@
 package com.github.fm_jm.softcomputing
 
 import com.github.fm_jm.softcomputing.ga.GeneticAlgorithm
+import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.impl.SimpleContextHandler
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 import com.github.fm_jm.softcomputing.impl.RandomFunctionsGenerator
@@ -35,6 +36,33 @@ class Utils {
                 new CPImpl(initCP, stepCP),
                 new MPImpl(initMP, stepMP)
         )
+    }
+
+    /**
+     * Works only with context that has everything filled by GA.
+     */
+    static void writeCsv(Context<FunctionTree> context, Closure<Void> println){
+        println(context.globalBest) // row 1
+        println(
+            (context.domainNames+["${context.valueSetName}-expected", "${context.valueSetName}-calculated", "difference"]).join("\t")
+        ) // row 2
+        context.points.each { Map<String, Double> point ->
+            def row = context.domainNames.collect { point[it] }
+            row << point[context.valueSetName]
+            def val = context.globalBest.value(point)
+            row << val
+            row << (Math.abs(val-point[context.valueSetName]))
+            println(row.collect {"$it".replaceAll("[.]", ",")}.join("\t"))
+        } // rows 3-(points.size()+3)
+        def diffColumn = (char)(((int)((char)'A'))+context.domainNames.size()+2)
+        println("\t"*(context.domainNames.size()+2)+"=sum(${diffColumn}3;${diffColumn}${context.points.size()+2})")
+        println()
+        println()
+        println( (["generation"]+((context.avgHistory.size()-1)..0).collect{"$it"}).join("\t") )
+        println( (["best"]+context.bestHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t") )
+        println( (["avg"]+context.avgHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t") )
+        println( (["worst"]+context.worstHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t") )
+        println( (["variance"]+context.varianceHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t") )
     }
 
 }

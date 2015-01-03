@@ -49,10 +49,14 @@ Dictionary
 TODO
 ----
 
-- Fix the nullpointer in context. After all, bounds checks should be performed, we've got problems during early generations
-- Basically, make it work without throwing up. Run Example3.groovy and follow the exceptions, chosen one!
-    - Oh it's bad luck to be you, chosen one of many is you!
+* Not really todo, but worth mentioning: for faster debugging I've created subset of sqrt.csv (called small_sqrt). I've
+    supplied sample results for one run for this dataset (for 10 generations with population of 15). Results are...
+     well, suprising - in converges very fast... I'm optimistic about this project.
+
+- clean up prints
 - Figure out what to do with functions cost
 - Make it find approximations more useful than MAX(x, x, x, x, x, x, 69, x, x, DIV(x,x))
-- Implement some testing procedure that will save results in a nice CSV
+- Implement some testing procedure that will save results in a nice CSV (CSV raport is partially implemented)
 - Perhaps some kind of experimentation procedure in order to find the best parameter values?
+- Context handler should also store CP/MP and cooling factor in each generation - they will look cute in CSV report
+- I've seen situation where cooling factor (result of calculateCoolingFactor) was 119764.77108142491, so SA ended after one iteration

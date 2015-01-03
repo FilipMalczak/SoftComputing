@@ -45,7 +45,16 @@ class Context<S extends Specimen> {
      * No bounds checks are performed!
      */
     double dAvg(int dt){
-        avgHistory.size()<2 ? (avgHistory ? avgHistory[0] : 0.0) : avgHistory[dt] - avgHistory[dt+1]
+        dt+1<avgHistory.size() ?
+            (avgHistory[dt] - avgHistory[dt + 1]) :
+            (avgHistory.size()<2 ?
+                (avgHistory.size() ? avgHistory[0] : 0.0) :
+                avgHistory[-2] - avgHistory[-1] )
+//        try {
+//            avgHistory.size() < 2 ? (avgHistory ? avgHistory[0] : 0.0) : (avgHistory[dt] - avgHistory[dt + 1])
+//        } catch (Throwable t) {
+//            throw t
+//        }
     }
 
     /**
@@ -53,6 +62,11 @@ class Context<S extends Specimen> {
      * No bounds checks are performed!
      */
     double dVariance(int dt){
-        varianceHistory.size()<2 ? (varianceHistory ? varianceHistory[0] : 1.0 ) : varianceHistory[dt] - varianceHistory[dt+1]
+        dt+1<varianceHistory.size() ?
+            (varianceHistory[dt] - varianceHistory[dt + 1]) :
+            (varianceHistory.size()<2 ?
+                (varianceHistory.size() ? varianceHistory[0] : 1.0) :
+                varianceHistory[-2] - varianceHistory[-1] )
+//        varianceHistory.size()<2 ? (varianceHistory ? varianceHistory[0] : 1.0 ) : (varianceHistory[dt] - varianceHistory[dt+1])
     }
 }

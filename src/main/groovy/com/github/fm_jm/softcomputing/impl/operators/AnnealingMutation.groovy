@@ -13,7 +13,7 @@ class AnnealingMutation implements MutationOperator<FunctionTree>{
 
     @Override
     List<FunctionTree> mutate(FunctionTree functionTree, Context context) {
-        print "mutating"
+        println "mutating"
         def out = sa.doRun(functionTree, context)
         println " done"
         return out

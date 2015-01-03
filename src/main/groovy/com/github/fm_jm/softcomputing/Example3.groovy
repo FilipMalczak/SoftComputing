@@ -3,7 +3,7 @@ package com.github.fm_jm.softcomputing
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.impl.ContextLoader
 
-File file = new File(this.class.classLoader.getResource("ln+cos.csv").toURI())
+File file = new File(this.class.classLoader.getResource("small_sqrt.csv").toURI())
 
 Context loaded = ContextLoader.loadFromFile(file)
 
@@ -23,5 +23,6 @@ def ga = Utils.defaultGA(15, 10, 750, 10, 200, 10)
 
 def pop = ga.doRun(loaded)
 
-println pop[0]
-println pop[0].evaluate(loaded)
+//println pop[0]
+//println pop[0].evaluate(loaded)
+Utils.writeCsv(loaded, this.&println)

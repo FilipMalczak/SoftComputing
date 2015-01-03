@@ -24,11 +24,15 @@ class FunctionTree implements Specimen{
         }.sum() / context.points.size()
     }
 
+    double value(Map<String, Double> point){
+        c*root.evaluate(point)
+    }
+
     /**
      * See package info for interpretation of point and valueSetName.
      */
     private double squaredError(Map<String, Double> point, String valueSetName){
-        pow( point[valueSetName] - c*root.evaluate(point), 2)
+        pow( point[valueSetName] - value(point), 2)
     }
 
     @Override
