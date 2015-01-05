@@ -25,7 +25,7 @@ class ResultStorage {
      * so following load(String) will retrieve if from cache (instead of executing something twice).
      */
     boolean exists(String key){
-        load(key)!=null
+        new File(pathForKey(key)).exists()
     }
 
     /**
@@ -34,10 +34,10 @@ class ResultStorage {
      */
     @Memoized(maxCacheSize = 2)
     Context load(String key){
-        File file = new File(pathForKey(key))
-        if (!file.exists())
+        String path = pathForKey(key)
+        if (!exists(key))
             return null
-        def inp = new ObjectInputStream(new FileInputStream(file))
+        def inp = new ObjectInputStream(new FileInputStream(path))
         Context out = inp.readObject() as Context
         inp.close()
         return out

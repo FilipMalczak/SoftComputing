@@ -1,8 +1,11 @@
 package com.github.fm_jm.softcomputing.heuristics
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * It's not totally reusable, but will do.
  */
+@EqualsAndHashCode
 class Context<S extends Specimen> implements Serializable {
     // GA state
     int mutProb
