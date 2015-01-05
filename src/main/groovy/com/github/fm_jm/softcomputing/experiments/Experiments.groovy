@@ -45,4 +45,4 @@ new ExperimentSetup(
     mps: [
         [200, 10]
     ]
-).run()
+).calculate().toCSV(new File("./results.csv"))

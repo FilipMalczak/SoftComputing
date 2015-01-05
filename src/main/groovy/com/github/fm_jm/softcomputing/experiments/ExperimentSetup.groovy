@@ -35,6 +35,7 @@ class ExperimentSetup {
 
     int currentTime
     String currentDataSet
+    File currentFile
     int popSize
     int maxGen
     int initCp
@@ -43,7 +44,7 @@ class ExperimentSetup {
     int stepMp
 
     String getCurrentKey(){
-        "("+([
+        ([
             currentDataSet, "$currentTime",
             "$FREE_RADICALS_FACTOR",
             "$TOURNEY_SIZE",
@@ -59,14 +60,14 @@ class ExperimentSetup {
             "$stepCp",
             "$initMp",
             "$stepMp"
-        ].join(";"))+")"
+        ].join(";"))
     }
 
-    void run(){
+    void eachConfig(Closure c){
         dataSets.each { String dataSetName ->
-            File f = new File(this.class.classLoader.getResource(dataSetName).toURI())
+            currentFile = new File(this.class.classLoader.getResource(dataSetName).toURI())
             currentDataSet = dataSetName
-            log.error("Data set: $currentDataSet @file: $f")
+            log.error("Data set: $currentDataSet @file: $currentFile")
             freeRadicalsFactors.each { double frf ->
                 Constants.FREE_RADICALS_FACTOR = frf
                 tourneySizes.each { int ts ->
@@ -98,21 +99,7 @@ class ExperimentSetup {
                                                             timesPerConfig.times { int t ->
                                                                 currentTime = t
                                                                 log.warn("Current: $currentKey")
-                                                                if (!ResultStorage.instance.exists(currentKey)) {
-                                                                    log.warn("Calculating")
-                                                                    Context context = ContextLoader.loadFromFile(f);
-                                                                    Utils.defaultGA(
-                                                                        popSize,
-                                                                        maxGen,
-                                                                        initCp,
-                                                                        stepCp,
-                                                                        initMp,
-                                                                        stepMp
-                                                                    ).doRun(context)
-                                                                    ResultStorage.instance.store(currentKey, context)
-                                                                } else {
-                                                                    log.warn("Already calculated, skipping")
-                                                                }
+                                                                c()
                                                             }
                                                         }
                                                     }
@@ -127,5 +114,35 @@ class ExperimentSetup {
                 }
             }
         }
+    }
+
+    ExperimentSetup calculate(){
+        eachConfig {
+            if (!ResultStorage.instance.exists(currentKey)) {
+                log.warn("Calculating")
+                Context context = ContextLoader.loadFromFile(currentFile);
+                Utils.defaultGA(
+                    popSize,
+                    maxGen,
+                    initCp,
+                    stepCp,
+                    initMp,
+                    stepMp
+                ).doRun(context)
+                ResultStorage.instance.store(currentKey, context)
+            } else {
+                log.warn("Already calculated, skipping")
+            }
+        }
+        return this
+    }
+
+    ExperimentSetup toCSV(File target){
+        target.text = ""
+        eachConfig {
+            def ctx = ResultStorage.instance.load(currentKey)
+            target.append("$currentKey;${ctx?.globalBest.evaluate(ctx)};${ctx?.startTime};${ctx.endTime})\n")
+        }
+        return this
     }
 }
