@@ -47,7 +47,8 @@ new ExperimentSetup(
         700
     ],
     maxAvgs: [ // 1k, 5k, 100k
-        10000.0
+//        100000.0
+        1e40
     ],
     popSizes: [
         50,

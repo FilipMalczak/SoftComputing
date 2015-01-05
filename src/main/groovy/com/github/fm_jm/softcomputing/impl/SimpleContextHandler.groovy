@@ -44,7 +44,10 @@ class SimpleContextHandler<S extends Specimen> implements ContextHandler<S>{
     }
 
     static double avgEval(List<S> population, Context context){
+        println "SimpleContextHandler#avgEval"
+        println population.collect { [it.toString(), it.evaluate(context)] }
         def collection  = population.collect { S ft -> ft.evaluate(context)/ population.size() }
+        println collection
         collection.sum()
     }
 
