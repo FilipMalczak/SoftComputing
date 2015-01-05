@@ -1,7 +1,7 @@
 package com.github.fm_jm.softcomputing.impl.fun
 
 
-class Var {
+class Var implements Serializable {
     private static Map<String, Var> vars = [:]
 
     final String name

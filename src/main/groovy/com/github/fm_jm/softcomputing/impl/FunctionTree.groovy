@@ -9,7 +9,7 @@ import groovy.transform.Canonical
 import static java.lang.Math.pow
 
 @Canonical(includes = ["c", "root"])
-class FunctionTree implements Specimen{
+class FunctionTree implements Specimen, Serializable{
     double c
     Node root
 

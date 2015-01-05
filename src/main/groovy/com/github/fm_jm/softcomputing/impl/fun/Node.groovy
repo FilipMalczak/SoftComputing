@@ -3,7 +3,7 @@ package com.github.fm_jm.softcomputing.impl.fun
 import groovy.transform.Canonical
 
 @Canonical
-class Node {
+class Node implements Serializable {
     Function foo
     /**
      * List of Nodes, Vars or doubles.

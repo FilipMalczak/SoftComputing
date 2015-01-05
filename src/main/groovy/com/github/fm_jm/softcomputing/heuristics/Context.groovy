@@ -3,7 +3,7 @@ package com.github.fm_jm.softcomputing.heuristics
 /**
  * It's not totally reusable, but will do.
  */
-class Context<S extends Specimen> {
+class Context<S extends Specimen> implements Serializable {
     // GA state
     int mutProb
     int crossProb

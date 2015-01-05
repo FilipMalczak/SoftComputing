@@ -11,7 +11,12 @@ class ResultStorage {
      * Easiest way to store context will probably be serializing it and storing as byte blob.
      */
     void store(String key, Context context){
-
+        String path = pathForKey(key)
+        if (exists(key))
+            new File(path).delete()
+        def out = new ObjectOutputStream(new FileOutputStream(path))
+        out.writeObject(context)
+        out.close()
     }
 
     /**
@@ -29,6 +34,17 @@ class ResultStorage {
      */
     @Memoized(maxCacheSize = 2)
     Context load(String key){
+        File file = new File(pathForKey(key))
+        if (!file.exists())
+            return null
+        def inp = new ObjectInputStream(new FileInputStream(file))
+        Context out = inp.readObject() as Context
+        inp.close()
+        return out
+    }
 
+    String pathForKey(String key){
+          return "results${File.separator}${key}.obj"
+//        return this.class.classLoader.getResource("results"+File.separator+key+".obj").toString()
     }
 }
