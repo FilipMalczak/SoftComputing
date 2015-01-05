@@ -20,8 +20,8 @@ class FunctionTree implements Specimen, Serializable{
     @Override
     double evaluate(Context context) {
         root.cost + context.points.collect { Map<String, Double> point ->
-            squaredError(point, context.valueSetName)
-        }.sum() / context.points.size()
+            squaredError(point, context.valueSetName) / context.points.size()
+        }.sum()
     }
 
     double value(Map<String, Double> point){
