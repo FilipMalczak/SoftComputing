@@ -3,11 +3,14 @@ package com.github.fm_jm.softcomputing.experiments
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.impl.ContextLoader
 
+import groovy.util.logging.Slf4j
+
 import static com.github.fm_jm.softcomputing.experiments.Constants.*
 
 import groovy.transform.Canonical
 
 @Canonical
+@Slf4j
 class ExperimentSetup {
     int timesPerConfig
 
@@ -63,8 +66,7 @@ class ExperimentSetup {
         dataSets.each { String dataSetName ->
             File f = new File(this.class.classLoader.getResource(dataSetName).toURI())
             currentDataSet = dataSetName
-//            timesPerConfig.times { int t ->
-//                currentTime = t
+            log.error("Data set: $currentDataSet @file: $f")
             freeRadicalsFactors.each { double frf ->
                 Constants.FREE_RADICALS_FACTOR = frf
                 tourneySizes.each { int ts ->
@@ -95,7 +97,9 @@ class ExperimentSetup {
                                                             stepMp = mut_probs[1]
                                                             timesPerConfig.times { int t ->
                                                                 currentTime = t
+                                                                log.warn("Current: $currentKey")
                                                                 if (!ResultStorage.instance.exists(currentKey)) {
+                                                                    log.warn("Calculating")
                                                                     Context context = ContextLoader.loadFromFile(f);
                                                                     Utils.defaultGA(
                                                                         popSize,
@@ -106,6 +110,8 @@ class ExperimentSetup {
                                                                         stepMp
                                                                     ).doRun(context)
                                                                     ResultStorage.instance.store(currentKey, context)
+                                                                } else {
+                                                                    log.warn("Already calculated, skipping")
                                                                 }
                                                             }
                                                         }
