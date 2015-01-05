@@ -3,10 +3,10 @@ package com.github.fm_jm.softcomputing.experiments
 new ExperimentSetup(
     timesPerConfig: 5,
     dataSets: [
-        "exp.csv",
-        "ln+cos.csv",
-        "sqrt.csv",
-        "x2+x.csv"
+        "exp.csv",      // Jacek
+        "ln+cos.csv",   // Jacek
+        "sqrt.csv",     // Filip
+        "x2+x.csv"      // Filip
     ],
     freeRadicalsFactors: [
         0.05,
