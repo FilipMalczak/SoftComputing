@@ -1,7 +1,6 @@
 package com.github.fm_jm.softcomputing.impl.sa
 
 import com.github.fm_jm.softcomputing.heuristics.Context
-import com.github.fm_jm.softcomputing.heuristics.Specimen
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 import com.github.fm_jm.softcomputing.impl.RandomUtils
 import com.github.fm_jm.softcomputing.sa.operators.NeighbourSelector

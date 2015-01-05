@@ -14,6 +14,7 @@ import com.github.fm_jm.softcomputing.heuristics.Specimen
 import groovy.util.logging.Slf4j
 
 import static com.github.fm_jm.softcomputing.impl.RandomUtils.*
+import static com.github.fm_jm.softcomputing.Constants.*
 
 import groovy.transform.Canonical
 
@@ -33,7 +34,7 @@ class GeneticAlgorithm<S extends Specimen> {
     CP<S> cp
     MP<S> mp
 
-    static final double FREE_RADICALS_FACTOR = 0.15
+
 
     /**
      * Run genetic algorithm parametrized with attributes of this instance.

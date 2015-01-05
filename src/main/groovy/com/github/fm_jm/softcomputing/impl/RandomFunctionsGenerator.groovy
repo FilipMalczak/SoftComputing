@@ -7,6 +7,8 @@ import com.github.fm_jm.softcomputing.impl.fun.Node
 import com.github.fm_jm.softcomputing.impl.fun.FunctionsDefinitions
 import com.github.fm_jm.softcomputing.impl.fun.Var
 
+import static com.github.fm_jm.softcomputing.Constants.*
+
 import groovy.util.logging.Slf4j
 
 import static com.github.fm_jm.softcomputing.impl.RandomUtils.*
@@ -14,13 +16,7 @@ import static com.github.fm_jm.softcomputing.impl.RandomUtils.*
 @Slf4j
 class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
 
-    static final int MIN_DEPTH = 3
-    static final int MIN_INITIAL_WIDTH = 2
-    static final int  MAX_INITIAL_WIDTH = 10
-    static final int EARLY_LEAF_PROB = 400
-    static final int CONST_PROB = 400
     static final List<Function> functions = [*Function.values()]
-    static final double MAX_AVG_FOR_RESULT = 10000.0;
 
     @Override
     List<FunctionTree> generate(int size, Context context) {

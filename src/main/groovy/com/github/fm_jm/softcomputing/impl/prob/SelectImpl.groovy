@@ -1,10 +1,11 @@
 package com.github.fm_jm.softcomputing.impl.prob
 
-import com.github.fm_jm.softcomputing.ga.GeneticAlgorithm
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.ga.operators.SelectionOperator
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 import com.github.fm_jm.softcomputing.impl.RandomUtils
+
+import static com.github.fm_jm.softcomputing.Constants.*
 
 import groovy.transform.Canonical
 
@@ -12,8 +13,6 @@ import groovy.transform.Canonical
 class SelectImpl implements SelectionOperator<FunctionTree>{
     double bestTaken
     double worstTaken
-
-    static final int TOURNEY_SIZE = 2
 
     @Override
     List<FunctionTree> selectNewPopulation(int populationSize, List<FunctionTree> population, int generation, Context context) {

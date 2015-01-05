@@ -2,7 +2,6 @@ package com.github.fm_jm.softcomputing
 
 import com.github.fm_jm.softcomputing.ga.GeneticAlgorithm
 import com.github.fm_jm.softcomputing.heuristics.Context
-import com.github.fm_jm.softcomputing.impl.ProgressBarStopConditionWrapper
 import com.github.fm_jm.softcomputing.impl.SimpleContextHandler
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 import com.github.fm_jm.softcomputing.impl.RandomFunctionsGenerator
