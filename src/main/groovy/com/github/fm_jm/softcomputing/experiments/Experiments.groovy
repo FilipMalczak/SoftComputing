@@ -3,7 +3,6 @@ package com.github.fm_jm.softcomputing.experiments
 new ExperimentSetup(
     timesPerConfig: 5,
     dataSets: [
-        "small_sqrt.csv",
         "exp.csv",
         "ln+cos.csv",
         "sqrt.csv",
@@ -47,33 +46,30 @@ new ExperimentSetup(
         400,
         700
     ],
-    maxAvgs: [
-        1000.0,
-        5000.0,
-        10000.0,
-        100000.0
+    maxAvgs: [ // 1k, 5k, 100k
+        10000.0
     ],
     popSizes: [
+        50,
         100,
-        200,
-        500
+        200
     ],
     maxGens: [
-        200,
-        300,
-        500
+        50,
+        100,
+        200
     ],
     cps: [
-        [750, 10],
-        [750, 50],
-        [250, 10],
-        [250, 50]
+        [800, 10],
+        [600, 10],
+        [800, 50],
+        [600, 50]
     ],
     mps: [
-        [750, 10],
-        [750, 50],
-        [250, 10],
-        [250, 50]
+        [300, 10],
+        [100, 10],
+        [300, 50],
+        [100, 50]
     ]
 ).calculate(
 ).toCSV(new File("./results.csv")
