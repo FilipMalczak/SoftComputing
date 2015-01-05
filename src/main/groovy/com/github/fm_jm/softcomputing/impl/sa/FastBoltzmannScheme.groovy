@@ -28,6 +28,6 @@ class FastBoltzmannScheme implements CoolingScheme {
     }
 
     double calculateCoolingFactor(Context context){
-        1/context.mutProb //* Math.abs(context.dVariance(1)/ context.dVariance(0))
+        10/context.mutProb //* Math.abs(context.dVariance(1)/ context.dVariance(0))
     }
 }
