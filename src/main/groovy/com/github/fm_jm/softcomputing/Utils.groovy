@@ -2,10 +2,11 @@ package com.github.fm_jm.softcomputing
 
 import com.github.fm_jm.softcomputing.ga.GeneticAlgorithm
 import com.github.fm_jm.softcomputing.heuristics.Context
+import com.github.fm_jm.softcomputing.impl.ProgressBarStopConditionWrapper
 import com.github.fm_jm.softcomputing.impl.SimpleContextHandler
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 import com.github.fm_jm.softcomputing.impl.RandomFunctionsGenerator
-import com.github.fm_jm.softcomputing.impl.StopCondImpl
+import com.github.fm_jm.softcomputing.impl.SimpleStopCondition
 import com.github.fm_jm.softcomputing.impl.operators.AnnealingMutation
 import com.github.fm_jm.softcomputing.impl.operators.SubTreeInjectingCrossover
 import com.github.fm_jm.softcomputing.impl.prob.CPImpl
@@ -24,7 +25,7 @@ class Utils {
                 popSize,
                 new SimpleContextHandler(),
                 new RandomFunctionsGenerator(),
-                new StopCondImpl(maxGen),
+                new SimpleStopCondition(maxGen),
                 new SubTreeInjectingCrossover(),
                 new AnnealingMutation(
                     new SimulatedAnnealing<FunctionTree>(

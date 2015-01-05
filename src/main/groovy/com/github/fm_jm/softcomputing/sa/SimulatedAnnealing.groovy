@@ -6,8 +6,10 @@ import com.github.fm_jm.softcomputing.sa.operators.AcceptanceFunction
 import com.github.fm_jm.softcomputing.sa.operators.CoolingScheme
 import com.github.fm_jm.softcomputing.sa.operators.NeighbourSelector
 import groovy.transform.Canonical
+import groovy.util.logging.Slf4j
 
 @Canonical
+@Slf4j
 class SimulatedAnnealing<S extends Specimen> {
 
     CoolingScheme coolingScheme;
@@ -16,6 +18,7 @@ class SimulatedAnnealing<S extends Specimen> {
 
     List<S> doRun(S specimen, Context context) {
         double temperature = coolingScheme.initialTemperature(context)
+        log.trace("initital temp: $temperature")
         S current = specimen
         S best = current.copy()
         while (!coolingScheme.shouldStop(temperature)){
@@ -28,7 +31,7 @@ class SimulatedAnnealing<S extends Specimen> {
             }
             temperature = coolingScheme.decreaseTemperature(temperature, context)
         }
-
+        log.trace("Result: [$current, $best]")
         return [current, best]
     }
 

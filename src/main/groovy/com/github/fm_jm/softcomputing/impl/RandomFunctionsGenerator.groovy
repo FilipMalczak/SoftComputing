@@ -6,12 +6,16 @@ import com.github.fm_jm.softcomputing.impl.fun.Function
 import com.github.fm_jm.softcomputing.impl.fun.Node
 import com.github.fm_jm.softcomputing.impl.fun.FunctionsDefinitions
 import com.github.fm_jm.softcomputing.impl.fun.Var
+
+import groovy.util.logging.Slf4j
+
 import static com.github.fm_jm.softcomputing.impl.RandomUtils.*
 
-
+@Slf4j
 class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
 
     static final int MIN_DEPTH = 3
+    static final int MIN_INITIAL_WIDTH = 2
     static final int  MAX_INITIAL_WIDTH = 10
     static final int EARLY_LEAF_PROB = 400
     static final int CONST_PROB = 400
@@ -20,11 +24,17 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
 
     @Override
     List<FunctionTree> generate(int size, Context context) {
+        log.debug("Generate $size specimen")
         assert size>0
         List<FunctionTree> out
-        while (out = generatePossiblyWrong(size, context))
-            if (SimpleContextHandler.avgEval(out, context)<MAX_AVG_FOR_RESULT) // this should be elsewhere, but screw it
+        while (out = generatePossiblyWrong(size, context)) {
+            def avg = SimpleContextHandler.avgEval(out, context)
+            log.trace("Avg eval: $avg")
+            if ( avg < MAX_AVG_FOR_RESULT ) // this should be elsewhere, but screw it
                 return out
+            else
+                log.trace("Less than $MAX_AVG_FOR_RESULT, regenerating")
+        }
     }
 
 
@@ -41,7 +51,7 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
         Function f = random(functions)
         int argc = FunctionsDefinitions.ARGS_COUNTS[f]
         if (argc<=0)
-            argc = 1+r.nextInt(MAX_INITIAL_WIDTH-1)
+            argc = MIN_INITIAL_WIDTH+r.nextInt(MAX_INITIAL_WIDTH-MIN_INITIAL_WIDTH)
         List args
         if (lvl>0) {
             List<Boolean> early_leaves = [false] +randomBools(argc-1, EARLY_LEAF_PROB)

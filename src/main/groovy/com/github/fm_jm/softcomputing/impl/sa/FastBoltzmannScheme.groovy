@@ -3,7 +3,9 @@ package com.github.fm_jm.softcomputing.impl.sa
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.sa.operators.CoolingScheme
 
+import groovy.util.logging.Slf4j
 
+@Slf4j
 class FastBoltzmannScheme implements CoolingScheme {
 
     static double INITIAL_TEMP = 100        //10k
@@ -13,7 +15,9 @@ class FastBoltzmannScheme implements CoolingScheme {
 
     @Override
     double decreaseTemperature(double temp, Context context) {
-        return temp * (1 - calculateCoolingFactor(context))
+        def factor = calculateCoolingFactor(context)
+        log.trace("Factor: $factor")
+        return temp * (1 - factor)
     }
 
     @Override
