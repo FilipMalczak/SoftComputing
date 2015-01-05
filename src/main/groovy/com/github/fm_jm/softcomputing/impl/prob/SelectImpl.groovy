@@ -5,7 +5,7 @@ import com.github.fm_jm.softcomputing.ga.operators.SelectionOperator
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 import com.github.fm_jm.softcomputing.impl.RandomUtils
 
-import static com.github.fm_jm.softcomputing.Constants.*
+import static com.github.fm_jm.softcomputing.experiments.Constants.*
 
 import groovy.transform.Canonical
 

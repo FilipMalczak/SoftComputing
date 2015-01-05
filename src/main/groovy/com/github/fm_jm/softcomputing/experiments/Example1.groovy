@@ -1,4 +1,4 @@
-package com.github.fm_jm.softcomputing
+package com.github.fm_jm.softcomputing.experiments
 
 import com.github.fm_jm.softcomputing.ga.operators.CrossoverOperator
 import com.github.fm_jm.softcomputing.ga.operators.MutationOperator

@@ -7,7 +7,7 @@ import com.github.fm_jm.softcomputing.impl.fun.Node
 import com.github.fm_jm.softcomputing.impl.fun.FunctionsDefinitions
 import com.github.fm_jm.softcomputing.impl.fun.Var
 
-import static com.github.fm_jm.softcomputing.Constants.*
+import static com.github.fm_jm.softcomputing.experiments.Constants.*
 
 import groovy.util.logging.Slf4j
 

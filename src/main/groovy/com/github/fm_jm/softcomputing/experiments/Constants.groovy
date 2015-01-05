@@ -1,4 +1,4 @@
-package com.github.fm_jm.softcomputing
+package com.github.fm_jm.softcomputing.experiments
 
 
 class Constants {

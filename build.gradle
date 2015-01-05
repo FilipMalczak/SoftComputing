@@ -8,7 +8,7 @@ targetCompatibility = 1.7
 group = 'com.github.whatever'
 version = '0.1-SNAPSHOT'
 
-mainClassName = "com.github.fm_jm.softcomputing.Example1"
+mainClassName = "com.github.fm_jm.softcomputing.experiments.Example1"
 
 repositories {
     mavenCentral()
