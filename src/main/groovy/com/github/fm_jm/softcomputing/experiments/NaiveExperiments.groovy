@@ -79,3 +79,10 @@ new NaiveExperimentsSetup(
 ).calculate(
 ).toCSV(new File("./results.csv")
 )
+/*
+ * 4*3*4*3*3*4*3*3*4*4 = 248832 - that was number of experiments (each time timesPerConfig) in brute version for each dataset
+ * 4+3+4+3+3+4+3+3+4+4 = 35 - this is the same number with naive version
+ * In the end, we would have done ~2 millions of runs (assuming timesPerConfig=2) with brute approach, and 280 with this
+ * 'naive' one.
+ */
+
