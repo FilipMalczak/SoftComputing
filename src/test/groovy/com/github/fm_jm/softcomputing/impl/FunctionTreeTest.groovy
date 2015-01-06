@@ -57,6 +57,10 @@ class FunctionTreeTest extends GroovyTestCase {
     @Test
     void testTree(){
         assert tree.depth == 3
+        assert tree.value(["x": 1, "y":1]) == 4
+        assert tree.value(["x": 2, "y":1]) == 5
+        assert tree.value(["x": 1, "y":5]) == 12
+        assert tree.value(["x": 1, "y":-1]) == 0
         assert tree.evaluate([
             domainNames: [ "x", "y" ],
                  valueSetName: "z",
@@ -66,7 +70,7 @@ class FunctionTreeTest extends GroovyTestCase {
                      [ x: 1, y:5, z: 12 ],
                      [ x: 1, y:-1, z: 0 ]
                  ]
-            ] as Context) == 0
+            ] as Context) == 1.1
         assert tree.constantsVector == [1.0, 1.0, 2.0]
         assert tree.root.cost == 1.1
         tree.constantsVector = [2.0, 3.0, 4.0]

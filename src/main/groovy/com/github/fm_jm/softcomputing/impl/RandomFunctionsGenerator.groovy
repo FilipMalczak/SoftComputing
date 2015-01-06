@@ -28,8 +28,11 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
             log.trace("Avg eval: $avg")
             if ( avg < MAX_AVG_FOR_RESULT ) // this should be elsewhere, but screw it
                 return out
-            else
-                log.trace("Bigger than $MAX_AVG_FOR_RESULT, regenerating")
+            else {
+//                log.trace("Bigger than $MAX_AVG_FOR_RESULT, regenerating")
+                log.trace("Bigger than $MAX_AVG_FOR_RESULT, returning anyway")
+                return out
+            }
         }
     }
 

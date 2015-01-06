@@ -19,13 +19,36 @@ class FunctionTree implements Specimen, Serializable{
      */
     @Override
     double evaluate(Context context) {
-        root.cost + context.points.collect { Map<String, Double> point ->
+//        double out = root.cost + context.points.collect { Map<String, Double> point ->
+//            squaredError(point, context.valueSetName) / context.points.size()
+//        }.sum()
+        List<Double> errors = context.points.collect { Map<String, Double> point ->
             squaredError(point, context.valueSetName) / context.points.size()
-        }.sum()
+        }
+        double out = root.cost + errors.sum()
+        if (Double.isInfinite(out)){
+//            println "infinity $this"
+//            println errors
+            return Double.MAX_VALUE
+        }
+        if (Double.isNaN(out)){
+            println "NaN $this"
+            println errors
+        }
+        out
     }
 
     double value(Map<String, Double> point){
-        c*root.evaluate(point)
+        double out = c*root.evaluate(point)
+        if (Double.isNaN(out)){
+//            println "NaN $this for point $point"
+            return 0.0
+        }
+        if (Double.isInfinite(out)){
+//            println "Infinity $this for point $point"
+            return Double.MAX_VALUE
+        }
+        out
     }
 
     /**
