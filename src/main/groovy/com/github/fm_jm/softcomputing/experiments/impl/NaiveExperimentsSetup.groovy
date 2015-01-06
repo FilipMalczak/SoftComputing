@@ -32,7 +32,7 @@ class NaiveExperimentsSetup extends ExperimentSetup{
                 }
             }
         }
-        setValue(contexts[contexts.keySet().max { contextEvaluator(contexts[it][0])}][1])
+        setValue(contexts[contexts.keySet().min { contextEvaluator(contexts[it][0])}][1])
     }
 
     def mean(Set s, Closure key={it}){

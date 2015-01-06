@@ -3,10 +3,10 @@ package com.github.fm_jm.softcomputing.experiments
 import com.github.fm_jm.softcomputing.experiments.impl.BruteExperimentSetup
 
 new BruteExperimentSetup(
-    timesPerConfig: 5,
+    timesPerConfig: 2,
     dataSets: [
-        "exp.csv",      // Jacek
-        "ln+cos.csv",   // Jacek
+//        "exp.csv",      // Jacek
+//        "ln+cos.csv",   // Jacek
         "sqrt.csv",     // Filip
         "x2+x.csv"      // Filip
     ],
