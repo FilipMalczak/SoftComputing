@@ -1,4 +1,4 @@
-package com.github.fm_jm.softcomputing.experiments
+package com.github.fm_jm.softcomputing.experiments.impl
 
 import com.github.fm_jm.softcomputing.ga.GeneticAlgorithm
 import com.github.fm_jm.softcomputing.heuristics.Context

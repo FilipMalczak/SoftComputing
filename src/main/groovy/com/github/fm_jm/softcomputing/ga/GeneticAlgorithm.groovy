@@ -14,7 +14,7 @@ import com.github.fm_jm.softcomputing.heuristics.Specimen
 import groovy.util.logging.Slf4j
 
 import static com.github.fm_jm.softcomputing.impl.RandomUtils.*
-import static com.github.fm_jm.softcomputing.experiments.Constants.*
+import static com.github.fm_jm.softcomputing.experiments.impl.Constants.*
 
 import groovy.transform.Canonical
 
@@ -43,7 +43,7 @@ class GeneticAlgorithm<S extends Specimen> {
      * @return Last population, sorted (ascending) by evaluation.
      */
     List<S> doRun(Context context) {
-        log.debug("doRun")
+        log.debug("doRun (popSize: $populationSize)")
         List<S> population = generatePopulation.generate(populationSize, context)
         int generation = 0
 

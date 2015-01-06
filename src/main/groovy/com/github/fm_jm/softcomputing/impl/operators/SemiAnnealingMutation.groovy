@@ -10,7 +10,7 @@ import com.github.fm_jm.softcomputing.sa.SimulatedAnnealing
 import groovy.transform.Canonical
 
 import static com.github.fm_jm.softcomputing.impl.RandomUtils.*
-import static com.github.fm_jm.softcomputing.experiments.Constants.*
+import static com.github.fm_jm.softcomputing.experiments.impl.Constants.*
 
 
 @Canonical

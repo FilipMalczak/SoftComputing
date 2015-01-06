@@ -3,7 +3,7 @@ package com.github.fm_jm.softcomputing.impl.sa
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.sa.operators.CoolingScheme
 
-import static com.github.fm_jm.softcomputing.experiments.Constants.*
+import static com.github.fm_jm.softcomputing.experiments.impl.Constants.*
 
 import groovy.util.logging.Slf4j
 

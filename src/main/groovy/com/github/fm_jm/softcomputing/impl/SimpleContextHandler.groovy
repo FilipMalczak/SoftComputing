@@ -1,7 +1,7 @@
 package com.github.fm_jm.softcomputing.impl
 
-import com.github.fm_jm.softcomputing.experiments.Constants
-import com.github.fm_jm.softcomputing.experiments.ResultStorage
+import com.github.fm_jm.softcomputing.experiments.impl.Constants
+import com.github.fm_jm.softcomputing.experiments.impl.ResultStorage
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.ga.alg.ContextHandler
 import com.github.fm_jm.softcomputing.heuristics.Specimen

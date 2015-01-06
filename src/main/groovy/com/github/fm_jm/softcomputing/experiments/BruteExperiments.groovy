@@ -1,6 +1,8 @@
 package com.github.fm_jm.softcomputing.experiments
 
-new ExperimentSetup(
+import com.github.fm_jm.softcomputing.experiments.impl.BruteExperimentSetup
+
+new BruteExperimentSetup(
     timesPerConfig: 5,
     dataSets: [
         "exp.csv",      // Jacek
