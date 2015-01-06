@@ -6,8 +6,8 @@ import com.github.fm_jm.softcomputing.heuristics.Context
 new NaiveExperimentsSetup(
     timesPerConfig: 2,
     dataSets: [
-//        "exp.csv",      // Jacek
-//        "ln+cos.csv",   // Jacek
+        "exp.csv",      // Jacek
+        "ln+cos.csv",   // Jacek
         "sqrt.csv",     // Filip
         "x2+x.csv"      // Filip
     ],
