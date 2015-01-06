@@ -6,7 +6,9 @@ import com.github.fm_jm.softcomputing.impl.SimpleContextHandler
 import com.github.fm_jm.softcomputing.impl.FunctionTree
 import com.github.fm_jm.softcomputing.impl.RandomFunctionsGenerator
 import com.github.fm_jm.softcomputing.impl.SimpleStopCondition
+import com.github.fm_jm.softcomputing.impl.fun.FunctionsDefinitions
 import com.github.fm_jm.softcomputing.impl.operators.AnnealingMutation
+import com.github.fm_jm.softcomputing.impl.operators.SemiAnnealingMutation
 import com.github.fm_jm.softcomputing.impl.operators.SubTreeInjectingCrossover
 import com.github.fm_jm.softcomputing.impl.prob.CPImpl
 import com.github.fm_jm.softcomputing.impl.prob.MPImpl
@@ -32,6 +34,26 @@ class Utils {
                         new BasicNeighbourSelector(),
                         new BoltzmannAcceptance<FunctionTree>()
                     )
+                ),
+                new SelectImpl(),
+                new CPImpl(initCP, stepCP),
+                new MPImpl(initMP, stepMP)
+        )
+    }
+
+    static GeneticAlgorithm<FunctionTree> semiGA(int popSize, int maxGen, int initCP, int stepCP, int initMP, int stepMP){
+        new GeneticAlgorithm<FunctionTree>(
+                popSize,
+                new SimpleContextHandler(),
+                new RandomFunctionsGenerator(),
+                new SimpleStopCondition(maxGen),
+                new SubTreeInjectingCrossover(),
+                new SemiAnnealingMutation(
+                        new SimulatedAnnealing<FunctionTree>(
+                                new FastBoltzmannScheme(),
+                                new BasicNeighbourSelector(),
+                                new BoltzmannAcceptance<FunctionTree>()
+                        )
                 ),
                 new SelectImpl(),
                 new CPImpl(initCP, stepCP),

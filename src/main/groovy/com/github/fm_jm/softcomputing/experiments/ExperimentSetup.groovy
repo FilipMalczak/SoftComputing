@@ -121,7 +121,7 @@ class ExperimentSetup {
             if (!ResultStorage.instance.exists(currentKey)) {
                 log.warn("Calculating")
                 Context context = ContextLoader.loadFromFile(currentFile);
-                Utils.defaultGA(
+                Utils.semiGA(
                     popSize,
                     maxGen,
                     initCp,

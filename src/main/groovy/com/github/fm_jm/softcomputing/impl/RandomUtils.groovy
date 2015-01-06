@@ -1,5 +1,7 @@
 package com.github.fm_jm.softcomputing.impl
 
+import com.github.fm_jm.softcomputing.impl.fun.Node
+
 
 class RandomUtils {
     static Random r = new Random()
@@ -24,5 +26,12 @@ class RandomUtils {
         if (size <= 0)
             return []
         (1..size).collect { happens(prob) }
+    }
+
+    static Node randomFooNode(FunctionTree functionTree) {
+        int cutDepth = random(functionTree.root.depth-1)
+        Node n = functionTree.root
+        (cutDepth-1).times {n = random(n.args.findAll {it instanceof Node})}
+        n
     }
 }
