@@ -32,7 +32,7 @@ class ResultStorage {
      * If there is no result for such key, should return null.
      * Memoization is for the sake of exists
      */
-    @Memoized(maxCacheSize = 2)
+//    @Memoized(maxCacheSize = 2)
     Context load(String key){
         String path = pathForKey(key)
         if (!exists(key))

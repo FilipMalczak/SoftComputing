@@ -14,6 +14,7 @@ class SimpleStopCondition implements StopCondition<FunctionTree>{
 
     @Override
     boolean shouldStop(List<FunctionTree> population, int generation, Context context) {
+        System.gc()
         if (generation % gensPerTick==0) {
             log.info("Generation $generation")
         }

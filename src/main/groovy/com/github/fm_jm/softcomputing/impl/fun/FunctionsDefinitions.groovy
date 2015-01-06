@@ -36,7 +36,7 @@ class FunctionsDefinitions {
 
     ].asImmutable()
 
-    @Memoized
+//    @Memoized
     static double execute(Function foo, List<Double> args){
         assertArgCount(foo, args.size())
         LOGIC[foo](args)
