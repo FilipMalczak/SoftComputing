@@ -34,7 +34,9 @@ class SemiAnnealingMutation implements MutationOperator<FunctionTree> {
         Node changed = randomFooNode(out)
         int argc = FunctionsDefinitions.ARGS_COUNTS[changed.foo]
         int children = changed.args.size()
-        Function newFoo = random(FunctionsDefinitions.ARGS_COUNTS.findAll {k, v -> (v == argc) || (v == -1) || (v == children)}.keySet().toList())
+        Function newFoo = random(FunctionsDefinitions.ARGS_COUNTS.findAll {k, v ->
+            (v == argc) /*|| (v == -1) || (v == children)*/
+        }.keySet().toList())
         changed.foo = newFoo
         [out]
     }
