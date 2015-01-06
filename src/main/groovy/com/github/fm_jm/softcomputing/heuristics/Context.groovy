@@ -7,6 +7,7 @@ import groovy.transform.EqualsAndHashCode
  */
 @EqualsAndHashCode
 class Context<S extends Specimen> implements Serializable {
+
     // GA state
     int mutProb
     int crossProb

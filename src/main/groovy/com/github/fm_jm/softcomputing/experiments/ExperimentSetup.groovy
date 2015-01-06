@@ -141,7 +141,8 @@ class ExperimentSetup {
         target.text = ""
         eachConfig {
             def ctx = ResultStorage.instance.load(currentKey)
-            target.append("$currentKey;${ctx?.globalBest.evaluate(ctx)};${ctx?.startTime};${ctx.endTime};${ctx.globalBest})\n")
+            if (ctx!=null)
+                target.append("$currentKey;${ctx?.globalBest?.evaluate(ctx)};${ctx?.startTime};${ctx?.endTime};${ctx?.globalBest}\n")
         }
         return this
     }

@@ -10,6 +10,8 @@ import static java.lang.Math.pow
 
 @Canonical(includes = ["c", "root"])
 class FunctionTree implements Specimen, Serializable{
+    private static final long serialVersionUID = -1278776919563322474L;
+
     double c
     Node root
 
@@ -47,8 +49,8 @@ class FunctionTree implements Specimen, Serializable{
         if (Double.isInfinite(out)){
 //            println "Infinity $this for point $point"
             if (out>0)
-                return Double.MAX_VALUE
-            return Double.MIN_VALUE
+                return Double.MAX_VALUE-1
+            return Double.MIN_VALUE+1
         }
         out
     }

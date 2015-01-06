@@ -1,5 +1,7 @@
 package com.github.fm_jm.softcomputing.impl
 
+import com.github.fm_jm.softcomputing.experiments.Constants
+import com.github.fm_jm.softcomputing.experiments.ResultStorage
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.ga.alg.ContextHandler
 import com.github.fm_jm.softcomputing.heuristics.Specimen
@@ -23,16 +25,22 @@ class SimpleContextHandler<S extends Specimen> implements ContextHandler<S>{
         context.pushWorst(findWorst(population, context).evaluate(context))
         context.pushCP(context.crossProb/1000.0)
         context.pushMP(context.mutProb/1000.0)
+        if (Constants.doDebug)
+            ResultStorage.instance.store("CURRENT", context)
     }
 
     @Override
     void start(Context context) {
         context.startTime = new Date()
+        if (Constants.doDebug)
+            ResultStorage.instance.store("CURRENT", context)
     }
 
     @Override
     void finish(Context context) {
         context.endTime = new Date()
+        if (Constants.doDebug)
+            ResultStorage.instance.store("CURRENT", context)
     }
 
     static S findBest(List<S> population, Context context){
