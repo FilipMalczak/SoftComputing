@@ -3,9 +3,12 @@ package com.github.fm_jm.softcomputing.experiments.impl
 import com.github.fm_jm.softcomputing.heuristics.Context
 import com.github.fm_jm.softcomputing.impl.ContextLoader
 
+import groovy.time.TimeCategory
+import groovy.util.logging.Slf4j
+
 import static Constants.*
 
-
+@Slf4j
 abstract class ExperimentSetup {
     int timesPerConfig
 
@@ -58,9 +61,27 @@ abstract class ExperimentSetup {
         ].join(";"))
     }
 
+    static final String keyParts = ([
+        "currentDataSet", "currentTime",
+        "freeRadicalsFactor",
+        "tourneySize",
+        "initialTemp", "minTemp",
+        "minDepth",
+        "minInitialWidth", "maxInitialWidth",
+        "earlyLeafProb",
+        "constProb",
+        "maxAvgForResult",
+        "popSize",
+        "maxGen",
+        "initCp",
+        "stepCp",
+        "initMp",
+        "stepMp"
+    ].join("\t"))
+
     abstract void eachConfig(Closure c);
 
-    BruteExperimentSetup calculate(){
+    ExperimentSetup calculate(){
         eachConfig {
             if (!ResultStorage.instance.exists(currentKey)) {
                 log.warn("Calculating")
@@ -81,13 +102,17 @@ abstract class ExperimentSetup {
         return this
     }
 
-    BruteExperimentSetup toCSV(File target){
-        target.text = ""
+    ExperimentSetup toCSV(File target){
+        target.text = "$keyParts\teval\tduration\tfoo"
         eachConfig {
+            log.info(currentKey)
             def ctx = ResultStorage.instance.load(currentKey)
             if (ctx!=null)
-                target.append("$currentKey;${ctx?.globalBest?.evaluate(ctx)};${ctx?.startTime};${ctx?.endTime};${ctx?.globalBest}\n")
+                use (TimeCategory) {
+                    target.append("${currentKey.replaceAll(";", "\t")}\t${ctx?.globalBest?.evaluate(ctx)}\t${ctx?.endTime?.minus(ctx?.startTime)}\t${ctx?.globalBest}\n")
+                }
         }
+
         return this
     }
 }
