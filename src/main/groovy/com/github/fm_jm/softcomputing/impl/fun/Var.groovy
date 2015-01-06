@@ -6,6 +6,8 @@ class Var implements Serializable {
 
     final String name
 
+    private static final long serialVersionUID = -1278776919563022478L;
+
     private Var(String name) {
         this.name = name
     }

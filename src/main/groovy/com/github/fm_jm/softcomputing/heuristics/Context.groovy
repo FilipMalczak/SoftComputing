@@ -30,6 +30,8 @@ class Context<S extends Specimen> implements Serializable {
     List<Double> CPHistory = []
     List<Double> MPHistory = []
 
+    private static final long serialVersionUID = -1278776919563022474L;
+
     void pushAvg(double avg){
         avgHistory = [ avg ] + avgHistory
     }

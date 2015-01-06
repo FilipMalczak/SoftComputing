@@ -33,7 +33,8 @@ class SemiAnnealingMutation implements MutationOperator<FunctionTree> {
         FunctionTree out = (FunctionTree)functionTree.copy()
         Node changed = randomFooNode(out)
         int argc = FunctionsDefinitions.ARGS_COUNTS[changed.foo]
-        Function newFoo = random(FunctionsDefinitions.ARGS_COUNTS.findAll {k, v -> v == argc}.keySet().toList())
+        int children = changed.args.size()
+        Function newFoo = random(FunctionsDefinitions.ARGS_COUNTS.findAll {k, v -> (v == argc) || (v == -1) || (v == children)}.keySet().toList())
         changed.foo = newFoo
         [out]
     }

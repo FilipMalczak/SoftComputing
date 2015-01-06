@@ -10,6 +10,8 @@ class Node implements Serializable {
      */
     List args
 
+    private static final long serialVersionUID = -1278776919563022470L;
+
     double evaluate(Map<String, Double> varVals){
         def argsValues = args.collect {
             switch (it) {
