@@ -46,7 +46,9 @@ class FunctionTree implements Specimen, Serializable{
         }
         if (Double.isInfinite(out)){
 //            println "Infinity $this for point $point"
-            return Double.MAX_VALUE
+            if (out>0)
+                return Double.MAX_VALUE
+            return Double.MIN_VALUE
         }
         out
     }
