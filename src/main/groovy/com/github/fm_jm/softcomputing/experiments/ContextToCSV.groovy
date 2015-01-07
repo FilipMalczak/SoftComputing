@@ -4,9 +4,8 @@ import com.github.fm_jm.softcomputing.experiments.impl.ResultStorage
 import com.github.fm_jm.softcomputing.experiments.impl.Utils
 import com.github.fm_jm.softcomputing.heuristics.Context
 
-def fromCSVKey(String csvKey){
-    csvKey.replaceAll(",", ".").replaceAll("\t", ";")
-}
+import static com.github.fm_jm.softcomputing.experiments.impl.Utils.fromCSVKey
+
 
 key = fromCSVKey "exp,csv\t0\t0,05\t2\t100,0\t1,0\t3\t2\t10\t400\t400\t10000,0\t100\t50\t800\t10\t300\t10"
 out = new File("./singleResult.csv")
