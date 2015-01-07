@@ -11,6 +11,8 @@ class RandomUtils {
     }
 
     static <S> S random(List<S> population) {
+        if (!population)
+            return null
         population[r.nextInt(population.size())]
     }
 
@@ -30,8 +32,11 @@ class RandomUtils {
 
     static Node randomFooNode(FunctionTree functionTree) {
         int cutDepth = random(functionTree.root.depth-1)
-        Node n = functionTree.root
-        (cutDepth-1).times {n = random(n.args.findAll {it instanceof Node})}
+        Node n = null
+        while (!n) {
+            n = functionTree.root
+            (cutDepth - 1).times { n = random(n?.args?.findAll { it instanceof Node }) }
+        }
         n
     }
 }

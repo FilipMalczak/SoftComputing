@@ -22,19 +22,27 @@ class SubTreeInjectingCrossover implements CrossoverOperator<FunctionTree> {
     List<FunctionTree> crossAtDepths(FunctionTree f1, FunctionTree f2, int d1, int d2){
         FunctionTree out1 = f1.copy()
         FunctionTree out2 = f2.copy()
-        Node n1 = out1.root
-        Node n2 = out2.root
+        Node n1 = null
+        Node n2 = null
         Node parent1 = n1
         Node parent2 = n2
 
-
-        (d1-1).times {
+        while (!n1) {
+            n1 = out1.root
             parent1 = n1
-            n1 = random(n1.args.findAll { it instanceof Node })
+            (d1 - 1).times {
+                parent1 = n1
+                n1 = random(n1?.args?.findAll { it instanceof Node })
+            }
         }
-        (d2-1).times {
+
+        while(!n2) {
+            n2 = out2.root
             parent2 = n2
-            n2 = random(n2.args.findAll { it instanceof Node })
+            (d2 - 1).times {
+                parent2 = n2
+                n2 = random(n2?.args?.findAll { it instanceof Node })
+            }
         }
         parent1.args = parent1.args.collect { if (it.is(n1)) n2 else it }
         parent2.args = parent2.args.collect { if (it.is(n2)) n1 else it }
