@@ -80,7 +80,7 @@ class Utils {
         } // rows 3-(points.size()+3)
         def diffColumn = (char)(((int)((char)'A'))+context.domainNames.size()+2)
         def sqrDiffColumn = (char)(((int)((char)'A'))+context.domainNames.size()+3)
-        println("SUM"+"\t"*(context.domainNames.size()+2)+"=sum(${diffColumn}3;${diffColumn}${context.points.size()+2})\t=sum(${sqrDiffColumn}3;${sqrDiffColumn}${context.points.size()+2})")
+        println("SUM"+"\t"*(context.domainNames.size()+2)+"=sum(${diffColumn}3;${diffColumn}${context.points.size()+2})\t=${"${context.globalBest.root.cost}".replaceAll("[.]", ",")}+(sum(${sqrDiffColumn}3;${sqrDiffColumn}${context.points.size()+2}))")
         println("AVG"+"\t"*(context.domainNames.size()+2)+"=${diffColumn}${context.points.size() + 3}/${context.points.size()}\t=${sqrDiffColumn}${context.points.size() + 3}/${context.points.size()}")
         println("")
         println("")
@@ -96,4 +96,8 @@ class Utils {
         println("Total execution time: ${TimeCategory.minus(context.endTime, context.startTime)}")
     }
 
+
+    static String fromCSVKey(String csvKey){
+        csvKey.replaceAll(",", ".").replaceAll("\t", ";")
+    }
 }
