@@ -103,13 +103,13 @@ abstract class ExperimentSetup {
     }
 
     ExperimentSetup toCSV(File target){
-        target.text = "$keyParts\teval\tduration\tfoo"
+        target.text = "$keyParts\teval\tduration\tfoo\n"
         eachConfig {
             log.info(currentKey)
             def ctx = ResultStorage.instance.load(currentKey)
             if (ctx!=null)
                 use (TimeCategory) {
-                    target.append("${currentKey.replaceAll(";", "\t")}\t${ctx?.globalBest?.evaluate(ctx)}\t${ctx?.endTime?.minus(ctx?.startTime)}\t${ctx?.globalBest}\n")
+                    target.append("${currentKey.replaceAll(";", "\t")}\t${ctx?.globalBest?.evaluate(ctx)}\t${ctx?.endTime?.minus(ctx?.startTime)}\t${ctx?.globalBest}\n".replaceAll("[.]", ","))
                 }
         }
 

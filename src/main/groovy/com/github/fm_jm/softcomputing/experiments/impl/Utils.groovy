@@ -67,7 +67,7 @@ class Utils {
     static void writeCsv(Context<FunctionTree> context, Closure<Void> println){
         println(context.globalBest) // row 1
         println(
-            (context.domainNames+["${context.valueSetName}-expected", "${context.valueSetName}-calculated", "difference"]).join("\t")
+            (context.domainNames+["${context.valueSetName}-expected", "${context.valueSetName}-calculated", "difference", "difference^2"]).join("\t")
         ) // row 2
         context.points.each { Map<String, Double> point ->
             def row = context.domainNames.collect { point[it] }
@@ -75,12 +75,15 @@ class Utils {
             def val = context.globalBest.value(point)
             row << val
             row << (Math.abs(val-point[context.valueSetName]))
+            row << (Math.pow(Math.abs(val-point[context.valueSetName]), 2))
             println(row.collect {"$it".replaceAll("[.]", ",")}.join("\t"))
         } // rows 3-(points.size()+3)
         def diffColumn = (char)(((int)((char)'A'))+context.domainNames.size()+2)
-        println("\t"*(context.domainNames.size()+2)+"=sum(${diffColumn}3;${diffColumn}${context.points.size()+2})")
-        println()
-        println()
+        def sqrDiffColumn = (char)(((int)((char)'A'))+context.domainNames.size()+3)
+        println("SUM"+"\t"*(context.domainNames.size()+2)+"=sum(${diffColumn}3;${diffColumn}${context.points.size()+2})\t=sum(${sqrDiffColumn}3;${sqrDiffColumn}${context.points.size()+2})")
+        println("AVG"+"\t"*(context.domainNames.size()+2)+"=${diffColumn}${context.points.size() + 3}/${context.points.size()}\t=${sqrDiffColumn}${context.points.size() + 3}/${context.points.size()}")
+        println("")
+        println("")
         println( (["generation"]+((context.avgHistory.size()-1)..0).collect{"$it"}).join("\t") )
         println( (["best"]+context.bestHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t") )
         println( (["avg"]+context.avgHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t") )
@@ -88,8 +91,8 @@ class Utils {
         println( (["variance"]+context.varianceHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t") )
         println( (["CP"]+context.CPHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t"))
         println( (["MP"]+context.MPHistory.collect{"$it".replaceAll("[.]", ",")}).join("\t"))
-        println()
-        println()
+        println("")
+        println("")
         println("Total execution time: ${TimeCategory.minus(context.endTime, context.startTime)}")
     }
 
