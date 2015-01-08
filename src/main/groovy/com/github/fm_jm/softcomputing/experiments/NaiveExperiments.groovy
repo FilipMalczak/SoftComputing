@@ -31,7 +31,7 @@ new NaiveExperimentsSetup(
     minDepths: [
         3,
         5,
-        10
+//        10
     ],
     initialWidths: [
         [2, 10],
