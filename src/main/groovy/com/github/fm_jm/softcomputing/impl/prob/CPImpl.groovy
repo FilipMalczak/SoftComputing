@@ -13,10 +13,12 @@ class CPImpl implements CP<FunctionTree>{
 
     @Override
     int getCrossoverProbability(List<FunctionTree> population, int generation, Context context) {
-        generation<2 ?
+        int out = generation<2 ?
             initialProb :
             context.dVariance(0) > context.dVariance(1) ?
                 context.crossProb - step :
                 context.crossProb + step
+        out>0 ? out : 50
+
     }
 }

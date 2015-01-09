@@ -13,10 +13,11 @@ class MPImpl implements MP<FunctionTree> {
 
     @Override
     int getMutationProbability(List<FunctionTree> population, int generation, Context context) {
-        generation<2 ?
+        int out = generation<2 ?
             initialProb :
             context.dAvg(0) > context.dAvg(1) ?
                 context.mutProb - step :
                 context.mutProb + step
+        out>0 ? out : 50
     }
 }
