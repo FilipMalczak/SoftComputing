@@ -16,5 +16,5 @@ class Constants {
     static double MAX_AVG_FOR_RESULT = 10000.0;
 
 
-    static final boolean doDebug = true
+    static final boolean doDebug = false
 }

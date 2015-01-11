@@ -5,13 +5,19 @@ apply plugin: 'application'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
-group = 'com.github.whatever'
-version = '0.1-SNAPSHOT'
-
-mainClassName = "com.github.fm_jm.softcomputing.experiments.Example1"
+group = 'com.github.fm_jm'
+version = '0.2-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+mainClassName = "com.github.fm_jm.softcomputing.Main"
+
+run {
+    if ( project.hasProperty("appArgs") ) {
+        args Eval.me(appArgs)
+    }
 }
 
 dependencies {
