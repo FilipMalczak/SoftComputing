@@ -26,7 +26,7 @@ class RandomFunctionsGenerator implements GeneratePopulation<FunctionTree>{
         while (out = generatePossiblyWrong(size, context)) {
             def avg = SimpleContextHandler.avgEval(out, context)
             log.trace("Avg eval: $avg")
-            if ( avg < MAX_AVG_FOR_RESULT ) // this should be elsewhere, but screw it
+            if ( avg < MAX_AVG_FOR_RESULT )
                 return out
             else {
 //                log.trace("Bigger than $MAX_AVG_FOR_RESULT, regenerating")

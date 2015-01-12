@@ -15,10 +15,6 @@ class FunctionTree implements Specimen, Serializable{
     double c
     Node root
 
-    /**
-     * TODO: For now evaluation is just mean-square error multiplied by cost (which for now is 1, see Node.getCost())
-     * In future we can introduce evaluation based on tree depth, cost, etc.
-     */
     @Override
     double evaluate(Context context) {
 //        double out = root.cost + context.points.collect { Map<String, Double> point ->

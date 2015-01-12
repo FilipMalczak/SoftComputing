@@ -6,9 +6,8 @@ import com.github.fm_jm.softcomputing.heuristics.Context
 
 import static com.github.fm_jm.softcomputing.experiments.impl.Utils.fromCSVKey
 
-
-key = fromCSVKey "exp,csv\t0\t0,05\t2\t100,0\t1,0\t3\t2\t10\t400\t400\t10000,0\t100\t50\t800\t10\t300\t10"
-out = new File("./singleResult.csv")
+key = "x2+x.csv;0;0.15;5;100.0;1.0;3;2;10;400;400;10000.0;100;50;800;10;300;10"
+out = new File("./best_x2_x.csv")
 Context ctx = ResultStorage.instance.load(key)
 if (ctx!=null) {
     out.text=""

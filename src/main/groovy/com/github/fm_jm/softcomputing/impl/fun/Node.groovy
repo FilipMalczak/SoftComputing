@@ -26,7 +26,6 @@ class Node implements Serializable {
     }
 
     /**
-     * TODO: implement something more useful
      * DO NOT USE THIS IN EVALUATION! THIS SHOULD BE USED BY FunctionTree!
      * It still may depend of args and their cost.
      */
