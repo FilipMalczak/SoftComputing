@@ -15,7 +15,7 @@ class Main {
             outPath = args[1]
 
         Context problem = ContextLoader.loadFromFile(new File(problemPath))
-        def ga = Utils.semiGA(200, 5, 750, 10, 200, 10)
+        def ga = Utils.semiGA(100, 50, 800, 10, 300, 10)
 
         ga.doRun(problem)
 

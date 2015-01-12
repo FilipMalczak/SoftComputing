@@ -3,7 +3,7 @@ package com.github.fm_jm.softcomputing.experiments.impl
 
 class Constants {
     static double FREE_RADICALS_FACTOR = 0.15
-    static int TOURNEY_SIZE = 2
+    static int TOURNEY_SIZE = 3
     static double INITIAL_TEMP = 100        //10k
     static double MINIMAL_TEMP = 1           //10
     static int ANNEALING_CHANCE = 200
